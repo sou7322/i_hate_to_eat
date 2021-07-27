@@ -59,6 +59,9 @@
 
 ## 画面遷移図
 
+#### プロトタイプ
+https://figma.fun/9WCOQp
+
 <br />
 
 
