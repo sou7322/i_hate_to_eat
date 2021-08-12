@@ -67,5 +67,6 @@ https://figma.fun/9WCOQp
 
 ## ER図
 
+https://drive.google.com/file/d/1uh3RqokIwJ2ApwKBgfC2SGmrMDQr59AZ/view?usp=sharing
 
 <br />
