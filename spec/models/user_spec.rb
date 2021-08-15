@@ -10,17 +10,17 @@ RSpec.describe User, type: :model do
     end
 
     it '名前がなければ無効であること' do
-      user = build(:user, name: "")
+      user = build(:user, name: '')
       user.valid?
       expect(user).to be_invalid
-      # expect(user.errors[:name]).to include "can't be blank" 
+      # expect(user.errors[:name]).to include "can't be blank"
     end
 
     it 'メールアドレスがなければ無効であること' do
-      user = build(:user, email: "")
+      user = build(:user, email: '')
       user.valid?
       expect(user).to be_invalid
-      # expect(user.errors[:email]).to include "can't be blank" 
+      # expect(user.errors[:email]).to include "can't be blank"
     end
 
     it '重複したメールアドレスの場合は無効であること' do
