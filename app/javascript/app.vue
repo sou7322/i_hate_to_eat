@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view />
   </div>
 </template>
 
@@ -25,13 +25,13 @@ const router = new VueRouter({
       name: 'RegisterPage'
     }
   ]
-})
+});
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export default {
   router
-}
+};
 </script>
 
 <style scoped>
