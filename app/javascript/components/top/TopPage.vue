@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <p>{{ title }}</p>
-    <v-btn>Vuetify</v-btn>
+    <h1>{{ title }}</h1>
     <p><router-link :to="{ name: 'RegisterPage' }">to register</router-link></p>
   </div>
 </template>
