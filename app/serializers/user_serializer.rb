@@ -1,10 +1,6 @@
-FactoryBot.define do
-  factory :user do
-    sequence(:name, 'name_0')
-    sequence(:email) { |n| "user_#{n}@example.com" }
-    password { "password" }
-    role { 0 }
-  end
+class UserSerializer
+  include FastJsonapi::ObjectSerializer
+  attributes :name, :email, :role
 end
 
 # == Schema Information
