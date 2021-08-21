@@ -14,9 +14,45 @@ AllCops:
     - 'node_modules/**/*'
     - 'lib/tasks/auto_annotate_models.rake'
     - '.pryrc'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config/application.rb'
 
 Rails:
   Enabled: true
 
+Layout/LineLength:
+  Exclude:
+    - 'config/**/*'
+
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/requests/**/*_spec.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  MinBodyLength: 5
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Rails/FilePath:
+  Exclude:
+    - 'config/**/*'
+    - 'spec/rails_helper.rb'
