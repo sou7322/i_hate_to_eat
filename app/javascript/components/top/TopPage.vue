@@ -16,6 +16,6 @@ export default {
     return {
       title: 'Dummy Top'
     };
-  } 
+  }
 };
 </script>
