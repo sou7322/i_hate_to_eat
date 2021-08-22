@@ -16,7 +16,7 @@
       />
       <v-text-field
         v-model="user.email"
-        label="Email"
+        label="メールアドレス"
       />
       <v-text-field
         v-model="user.password"
