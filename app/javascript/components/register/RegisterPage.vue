@@ -2,9 +2,9 @@
   <div>
     <h1>新規ユーザー登録</h1>
     <v-form @submit.prevent="createUser">
-      <div v-if="errors.length != 0">
+      <div v-if="errors.errorMessages.length != 0">
         <ul
-          v-for="e in errors"
+          v-for="e in errors.errorMessages"
           :key="e"
         >
           <li>{{ e }}</li>
@@ -47,6 +47,12 @@
 
 <script>
 import axios from 'axios';
+axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content')
+};
 
 export default {
   data() {
@@ -57,23 +63,25 @@ export default {
         password: '',
         password_confirmation: ''
       },
-      errors: ''
+      errors: {
+        message: '',
+        errorMessages: []
+      }
     };
   },
   methods: {
     createUser() {
       axios
-        .post('api/v1/registration', this.user)
+        .post('api/v1/registration', { user: this.user })
         .then(response => {
-          let e = response.data;
-          console.log(e);
-          // 画面遷移処理を後ほど追加
+          console.log(response.status);
+          // [ToDO] 遷移先を一時的にTopに、後に修正
+          this.$router.push({ name: 'TopPage' });
         })
         .catch(error => {
-          console.error(error);
-          if (error.response.data && error.response.data.errors) {
-            this.errors = error.response.data.errors;
-          }
+          let e = error.response;
+          console.error(e.status);
+          if (e.data.errors) { this.errors.errorMessages = e.data.errors; };
         });
     }
   }
