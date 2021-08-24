@@ -1,8 +1,6 @@
 module Api
   module V1
     class BaseController < ApplicationController
-      protect_from_forgery
-
       rescue_from StandardError, with: :render500
       rescue_from ActiveRecord::RecordNotFound, with: :render404
 

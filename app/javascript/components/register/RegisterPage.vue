@@ -46,14 +46,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'X-CSRF-TOKEN': document
-    .querySelector('meta[name="csrf-token"]')
-    .getAttribute('content')
-};
-
 export default {
   data() {
     return {
@@ -71,8 +63,8 @@ export default {
   },
   methods: {
     createUser() {
-      axios
-        .post('api/v1/registration', { user: this.user })
+      this.$axios
+        .post('registration', { user: this.user })
         .then(response => {
           console.log(response.status);
           // [ToDO] 遷移先を一時的にTopに、後に修正
