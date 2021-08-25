@@ -9,6 +9,7 @@ import Vue from 'vue';
 import App from '../app.vue';
 import router from '../router/router';
 import vuetify from '../vty/vty';
+import * as veeValidate from '../plugins/vee-validate';
 import axiosInstance from '../axios/axios';
 
 Vue.prototype.$axios = axiosInstance;
@@ -17,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router,
     vuetify,
+    veeValidate,
     render: h => h(App)
   }).$mount();
   document.body.appendChild(app.$el);
-
   console.log(app);
 });
 

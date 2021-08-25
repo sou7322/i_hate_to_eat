@@ -1,48 +1,119 @@
 <template>
-  <div>
-    <h1>新規ユーザー登録</h1>
-    <v-form @submit.prevent="createUser">
-      <div v-if="errors.errorMessages.length != 0">
-        <ul
-          v-for="e in errors.errorMessages"
-          :key="e"
-        >
-          <li>{{ e }}</li>
-        </ul>
-      </div>
-      <v-text-field
-        v-model="user.name"
-        label="ユーザーネーム"
-      />
-      <v-text-field
-        v-model="user.email"
-        label="メールアドレス"
-      />
-      <v-text-field
-        v-model="user.password"
-        label="パスワード"
-      />
-      <v-text-field
-        v-model="user.password_confirmation"
-        label="パスワード（確認）"
-      />
-      <v-btn type="submit">
-        登録
-      </v-btn>
-    </v-form>
-    <div>
-      <p>
-        <router-link :to="{ name: 'TopPage' }">
-          ログイン
-        </router-link>
-      </p>
-      <p>
-        <router-link :to="{ name: 'TopPage' }">
-          パスワードをお忘れの方
-        </router-link>
-      </p>
-    </div>
-  </div>
+  <v-card
+    class="mx-auto my-16"
+    flat
+    outlined
+    max-width="500"
+  >
+    <v-card-title>
+      <v-row class="text-center">
+        <v-col cols="12">
+          <div class="text-h5">
+            新規ユーザー登録
+          </div>
+        </v-col>
+      </v-row>
+    </v-card-title>
+    <validation-observer
+      ref="observer"
+      v-slot="{ invalid }"
+    >
+      <v-form @submit.prevent="createUser">
+        <v-card-text>
+          <v-row>
+            <div v-if="railsErrors.errorMessages.length != 0">
+              <ul
+                v-for="e in railsErrors.errorMessages"
+                :key="e"
+              >
+                <li>{{ e }}</li>
+              </ul>
+            </div>
+          </v-row>
+          <v-row>
+            <v-col>
+              <validation-provider
+                v-slot="{ errors }"
+                name="ユーザーネーム"
+                rules="required"
+              >
+                <v-text-field
+                  v-model="user.name"
+                  :error-messages="errors"
+                  type="text"
+                  label="ユーザーネーム"
+                />
+              </validation-provider>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <validation-provider
+                v-slot="{ errors }"
+                name="メールアドレス"
+                rules="email|required"
+              >
+                <v-text-field
+                  v-model="user.email"
+                  :error-messages="errors"
+                  label="メールアドレス"
+                  type="email"
+                  required
+                />
+              </validation-provider>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <validation-provider
+                v-slot="{ errors }"
+                name="パスワード"
+                rules="alpha_num|min:5|required"
+                vid="confirmation"
+              >
+                <v-text-field
+                  v-model="user.password"
+                  :error-messages="errors"
+                  label="パスワード"
+                  type="password"
+                  required
+                />
+              </validation-provider>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <validation-provider
+                v-slot="{ errors }"
+                name="パスワード（確認）"
+                rules="confirmed:confirmation|required"
+              >
+                <v-text-field
+                  v-model="user.password_confirmation"
+                  :error-messages="errors"
+                  label="パスワード（確認）"
+                  type="password"
+                  required
+                />
+              </validation-provider>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-row class="text-center">
+            <v-col>
+              <v-btn
+                type="submit"
+                :disabled="invalid"
+              >
+                登録
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-actions>
+      </v-form>
+    </validation-observer>
+  </v-card>
 </template>
 
 <script>
@@ -55,7 +126,7 @@ export default {
         password: '',
         password_confirmation: ''
       },
-      errors: {
+      railsErrors: {
         message: '',
         errorMessages: []
       }
@@ -73,7 +144,7 @@ export default {
         .catch(error => {
           let e = error.response;
           console.error(e.status);
-          if (e.data.errors) { this.errors.errorMessages = e.data.errors; };
+          if (e.data. errors ) { this.railsErrors.errorMessages = e.data. errors; };
         });
     }
   }
