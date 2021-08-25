@@ -20,16 +20,19 @@
     >
       <v-form @submit.prevent="createUser">
         <v-card-text>
-          <v-row>
-            <div v-if="railsErrors.errorMessages.length != 0">
-              <ul
-                v-for="e in railsErrors.errorMessages"
-                :key="e"
-              >
-                <li>{{ e }}</li>
-              </ul>
-            </div>
-          </v-row>
+          <div v-if="railsErrors.errorMessages.length != 0">
+            <v-alert
+              class="text-center"
+              dense
+              type="error"
+              v-for="e in railsErrors.errorMessages"
+              :key="e"
+            >
+              <v-row>
+                {{ e }}
+              </v-row>
+            </v-alert>
+          </div>
           <v-row>
             <v-col>
               <validation-provider
