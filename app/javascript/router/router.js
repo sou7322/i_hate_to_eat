@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import TopPage from '../components/top/TopPage.vue';
-import RegisterPage from '../components/register/RegisterPage.vue';
+import TopPage from '../components/pages/top/TopPage.vue';
+import RegisterPage from '../components/pages/register/RegisterPage.vue';
 
 Vue.use(VueRouter);
 
