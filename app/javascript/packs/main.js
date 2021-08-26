@@ -10,6 +10,7 @@ import App from '../app.vue';
 import router from '../router/router';
 import vuetify from '../vty/vty';
 import * as veeValidate from '../plugins/vee-validate';
+import store from '../store/index';
 import axiosInstance from '../axios/axios';
 
 Vue.prototype.$axios = axiosInstance;
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router,
     vuetify,
     veeValidate,
+    store,
     render: h => h(App)
   }).$mount();
   document.body.appendChild(app.$el);

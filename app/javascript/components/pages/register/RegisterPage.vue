@@ -22,11 +22,11 @@
         <v-card-text>
           <div v-if="railsErrors.errorMessages.length != 0">
             <v-alert
+              v-for="e in railsErrors.errorMessages"
+              :key="e"
               class="text-center"
               dense
               type="error"
-              v-for="e in railsErrors.errorMessages"
-              :key="e"
             >
               <v-row>
                 {{ e }}
@@ -141,6 +141,10 @@ export default {
         .post('registration', { user: this.user })
         .then(response => {
           console.log(response.status);
+          this.$store.commit('flashMessage/setMessage', {
+            type: 'success',
+            message: '登録が完了しました'
+          });
           // [ToDO] 遷移先を一時的にTopに、後に修正
           this.$router.push({ name: 'TopPage' });
         })

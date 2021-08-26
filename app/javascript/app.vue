@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main>
+      <flash-message />
       <v-container>
         <router-view />
       </v-container>
@@ -9,5 +10,11 @@
 </template>
 
 <script>
-export default {};
+import FlashMessage from './components/commons/FlashMessage';
+
+export default {
+  components: {
+    FlashMessage
+  }
+};
 </script>
