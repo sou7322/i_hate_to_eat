@@ -8,16 +8,24 @@
 import Vue from 'vue';
 import App from '../app.vue';
 import router from '../router/router';
+import axios from 'axios';
+import { csrfToken } from 'rails-ujs';
+import AxiosPlugin from '../plugins/axiosPlugin';
 import vuetify from '../vty/vty';
+import * as veeValidate from '../plugins/vee-validate';
+import store from '../store/index';
+
+Vue.use(AxiosPlugin, { axios: axios, csrfToken: csrfToken });
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router,
     vuetify,
+    veeValidate,
+    store,
     render: h => h(App)
   }).$mount();
   document.body.appendChild(app.$el);
-
   console.log(app);
 });
 
