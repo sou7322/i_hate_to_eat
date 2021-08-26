@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "バリデーション" do
     context "有効な属性値の場合" do
-      fit "名前、メールアドレス、パスワード、パスワード（確認）があれば新規作成に成功すること" do
+      it "名前、メールアドレス、パスワード、パスワード（確認）があれば新規作成に成功すること" do
         user = build(:user)
         user.valid?
         expect(user).to be_valid
