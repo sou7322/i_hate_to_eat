@@ -16,9 +16,9 @@
     </v-card-title>
     <validation-observer
       ref="observer"
-      v-slot="{ invalid }"
+      v-slot="{ handleSubmit }"
     >
-      <v-form @submit.prevent="createUser">
+      <v-form @submit.prevent="handleSubmit(createUser)">
         <v-card-text>
           <div v-if="railsErrors.errorMessages.length != 0">
             <v-alert
@@ -107,7 +107,6 @@
             <v-col>
               <v-btn
                 type="submit"
-                :disabled="invalid"
               >
                 登録
               </v-btn>
@@ -137,8 +136,8 @@ export default {
   },
   methods: {
     createUser() {
-      this.$axios
-        .post('registration', { user: this.user })
+      this.axios
+        .post('api/v1/registration', { user: this.user })
         .then(response => {
           console.log(response.status);
           this.$store.commit('flashMessage/setMessage', {
