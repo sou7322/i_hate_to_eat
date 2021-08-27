@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "Registers", type: :system, js: true do
   describe "ユーザー新規登録" do
+    before do
+      visit "/"
+      # リンク名は後々修正
+      click_link "to register"
+    end
+
     context "フォームの入力値が有効" do
       it "ユーザーの新規作成が成功すること" do
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: "test_user@example.com"
         fill_in "パスワード", with: "12345"
@@ -19,9 +22,6 @@ RSpec.describe "Registers", type: :system, js: true do
 
     context "フォームの入力値が無効" do
       it "ユーザーネームが未入力の場合、新規作成が失敗すること" do
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: ""
         fill_in "メールアドレス", with: "test_user@example.com"
         fill_in "パスワード", with: "12345"
@@ -32,9 +32,6 @@ RSpec.describe "Registers", type: :system, js: true do
       end
 
       it "メールアドレスが未入力の場合、新規作成が失敗すること" do
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: ""
         fill_in "パスワード", with: "12345"
@@ -47,9 +44,6 @@ RSpec.describe "Registers", type: :system, js: true do
       it "登録済みのメールアドレスを入力した場合、新規作成が失敗すること" do
         other_user = create(:user)
 
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: other_user.email
         fill_in "パスワード", with: "12345"
@@ -61,9 +55,6 @@ RSpec.describe "Registers", type: :system, js: true do
 
       context "パスワードが5文字以下の場合" do
         it "パスワードが未入力の場合、新規作成が失敗すること" do
-          visit "/"
-          click_link "to register"
-
           fill_in "ユーザーネーム", with: "test_user"
           fill_in "メールアドレス", with: "test_user@example.com"
           fill_in "パスワード", with: ""
@@ -75,9 +66,6 @@ RSpec.describe "Registers", type: :system, js: true do
         end
 
         it "パスワードが4文字の場合、新規作成が失敗すること" do
-          visit "/"
-          click_link "to register"
-
           fill_in "ユーザーネーム", with: "test_user"
           fill_in "メールアドレス", with: "test_user@example.com"
           fill_in "パスワード", with: "1234"
@@ -89,9 +77,6 @@ RSpec.describe "Registers", type: :system, js: true do
       end
 
       it "パスワードとパスワード（確認）入力値が異なる場合、新規作成が失敗すること" do
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: "test_user@example.com"
         fill_in "パスワード", with: "12345"
@@ -102,9 +87,6 @@ RSpec.describe "Registers", type: :system, js: true do
       end
 
       it "パスワード（確認）が未入力の場合、新規作成が失敗すること" do
-        visit "/"
-        click_link "to register"
-
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: "test_user@example.com"
         fill_in "パスワード", with: "12345"
