@@ -1,6 +1,8 @@
 module Api
   module V1
     class BaseController < ApplicationController
+      before_action :require_login
+
       rescue_from StandardError, with: :render500
       rescue_from ActiveRecord::RecordNotFound, with: :render404
 

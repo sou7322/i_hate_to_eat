@@ -1,25 +1,22 @@
 module Api
   module V1
     class AuthenticationsController < BaseController
+      skip_before_action :require_login
+
       def create
-        @user = login(login_params[:email], login_params[:password])
+        @user = login(params[:user][:email], params[:user][:password])
 
         if @user
           head :ok
         else
-          render400(nil, "Bad Request")
+          render400(nil, "ログインに失敗しました")
         end
       end
 
       def destroy
-        head :ok if logout
+        logout
+        head :ok
       end
-
-      private
-
-        def login_params
-          login_params = params[:user]
-        end
     end
   end
 end
