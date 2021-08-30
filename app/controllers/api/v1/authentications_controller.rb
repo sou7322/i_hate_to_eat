@@ -7,7 +7,7 @@ module Api
         @user = login(params[:user][:email], params[:user][:password])
 
         if @user
-          head :ok
+          render json: { id: @user.id }
         else
           render400(nil, "ログインに失敗しました")
         end
