@@ -14,6 +14,7 @@ import AxiosPlugin from '../plugins/axiosPlugin';
 import vuetify from '../vty/vty';
 import * as veeValidate from '../plugins/vee-validate';
 import store from '../store/index';
+import { initialState } from '../store/modules/authUser';
 
 Vue.use(AxiosPlugin, { axios: axios, csrfToken: csrfToken });
 
@@ -23,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     vuetify,
     veeValidate,
     store,
+    created() {
+      localStorage.setItem('initialState', JSON.stringify(initialState));
+    },
     render: h => h(App)
   }).$mount();
   document.body.appendChild(app.$el);
