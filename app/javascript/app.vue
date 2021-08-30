@@ -1,7 +1,7 @@
 <template>
   <v-app>
+    <common-header />
     <v-main>
-      <flash-message />
       <v-container>
         <router-view />
       </v-container>
@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import FlashMessage from './components/commons/FlashMessage';
+import CommonHeader from './components/commons/CommonHeader';
 import FooterMenu from './components/commons/FooterMenu';
 
 export default {
   components: {
-    FlashMessage,
+    CommonHeader,
     FooterMenu
   }
 };
