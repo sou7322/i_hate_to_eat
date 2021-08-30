@@ -5,12 +5,17 @@
       max-width="600"
     >
       <template #activator="{ on }">
-        <v-btn
-          text
-          v-on="on"
-        >
-          login
-        </v-btn>
+        <v-row>
+          <v-col>
+            <v-btn
+              text
+              class="text-capitalize"
+              v-on="on"
+            >
+              login
+            </v-btn>
+          </v-col>
+        </v-row>
       </template>
       <v-card
         flat
@@ -119,16 +124,18 @@ export default {
         .post('api/v1/authentication', { user: this.user })
         .then(response => {
           console.log(response.status);
+          this.dialog = false;
+          this.$store.commit('authUser/login', response.data);
           this.$store.commit('flashMessage/setMessage', {
             type: 'success',
             message: 'ログインしました'
           });
-          this.dialog = false;
+          this.$router.push({ name: 'HomePage' });
         })
         .catch(error => {
           let e = error.response;
           console.error(e.status);
-          if (e.data. errors ) { this.railsErrors.errorMessages = e.data. errors; };
+          if (e.data.errors ) { this.railsErrors.errorMessages = e.data.errors; };
         });
     }
   }
