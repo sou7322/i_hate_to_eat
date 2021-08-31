@@ -5,16 +5,18 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column :name
-    column :email
-    column :role
+    column(:name)
+    column(:email)
+    column(:role) do |user|
+      user.role_i18n
+    end
     actions
   end
 
   # 一覧ページのフィルター項目
   filter :name
   filter :email
-  filter :role
+  filter :role, as: :select, collection: User.roles_i18n.invert.map{ |key, value| [key, User.roles[value]]}
   filter :created_at
   filter :updated_at
 
@@ -24,7 +26,9 @@ ActiveAdmin.register User do
       row(:id)
       row(:name)
       row(:email)
-      row(:role)
+      row(:role) do |user|
+        user.role_i18n
+      end
       row(:created_at)
       row(:updated_at)
     end
@@ -37,7 +41,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :role        
+      f.input :role, collection: User.roles_i18n.invert
     end
     f.actions
   end
