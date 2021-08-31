@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root to: 'top#index'
 
   namespace :api, format: 'json' do
