@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :registration, only: %i[create]
       resource :authentication, only: %i[create destroy]
-      resources :home, only: %i[index]
+      resource :home, only: %i[index]
+      resource :bmr, only: %i[show update]
     end
   end
 end
