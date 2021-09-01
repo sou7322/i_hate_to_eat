@@ -36,6 +36,9 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/requests/**/*_spec.rb'
 
+Style/AsciiComments:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
