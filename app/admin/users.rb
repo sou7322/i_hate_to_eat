@@ -1,5 +1,6 @@
 ActiveAdmin.register User do
-  permit_params :name, :email, :password, :password_confirmation, :role
+  permit_params :name, :email, :password, :password_confirmation,
+                :role, :gender, :birth, :height, :weight
 
   # 一覧ページの表示項目
   index do
@@ -7,18 +8,15 @@ ActiveAdmin.register User do
     id_column
     column(:name)
     column(:email)
-    column(:role) do |user|
-      user.role_i18n
-    end
+    column(:role, &:role_i18n)
     actions
   end
 
   # 一覧ページのフィルター項目
   filter :name
   filter :email
-  filter :role, as: :select, collection: User.roles_i18n.invert.map{ |key, value| [key, User.roles[value]]}
-  filter :created_at
-  filter :updated_at
+  filter :role, as: :select, collection: User.roles_i18n.invert.map { |key, value| [key, User.roles[value]] }
+  filter :gender, as: :select, collection: User.genders_i18n.invert.map { |key, value| [key, User.genders[value]] }
 
   # 詳細ページの表示項目
   show do
@@ -26,9 +24,12 @@ ActiveAdmin.register User do
       row(:id)
       row(:name)
       row(:email)
-      row(:role) do |user|
-        user.role_i18n
-      end
+      row(:role, &:role_i18n)
+      row(:gender, &:gender_i18n)
+      row(:birth)
+      row(:height)
+      row(:weight)
+      row(:bmr)
       row(:created_at)
       row(:updated_at)
     end
@@ -42,6 +43,10 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :role, collection: User.roles_i18n.invert
+      f.input :gender, collection: User.genders_i18n.invert
+      f.input :birth
+      f.input :height
+      f.input :weight
     end
     f.actions
   end
