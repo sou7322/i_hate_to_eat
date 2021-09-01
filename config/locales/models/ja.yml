@@ -9,6 +9,11 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
         role: "権限"
+        gender: "性別"
+        birth: "生年月日"
+        height: "身長"
+        weight: "体重"
+        bmr: "BMR"
         created_at: "登録日時"
         updated_at: "更新日時"
   enums:
@@ -16,3 +21,6 @@ ja:
       role:
         general: "一般"
         admin: "管理者"
+      gender:
+        female: "女性"
+        male: "男性"
