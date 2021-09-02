@@ -11,7 +11,7 @@ module Api
       def update
         if @user.update(user_params)
           bmr = @user.calc_bmr
-          render json: { bmr: bmr }
+          render json: { bmr: bmr } if @user.update(bmr: bmr)
         else
           render400(nil, user.errors.full_messages)
         end
