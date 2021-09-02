@@ -20,17 +20,17 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: :new_or_changes_password
   validates :password_confirmation, presence: true, if: :new_or_changes_password
 
-  private
+  def calc_bmr
+    age = calc_age
 
-    def calc_bmr
-      age = calc_age
-
-      if gender == 'female'
-        9.247 * weight + 3.098 * height - 4.33 * age + 447.593
-      else
-        13.397 * weight + 4.799 * height - 5.677 * age + 88.362
-      end
+    if gender == 'female'
+      9.247 * weight + 3.098 * height - 4.33 * age + 447.593
+    else
+      13.397 * weight + 4.799 * height - 5.677 * age + 88.362
     end
+  end
+
+  private
 
     def calc_age
       (Time.zone.today.strftime("%Y%m%d").to_i - birth.strftime("%Y%m%d").to_i) / 10_000

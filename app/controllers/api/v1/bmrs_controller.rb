@@ -4,13 +4,13 @@ module Api
       before_action :set_user
 
       def show
-        json_string = UserSerializer.new(@user).serialized_json
-        render json: json_string
+        attributes = set_attributes_for_bmr(@user).to_json
+        render json: attributes
       end
 
       def update
         if @user.update(user_params)
-          bmr = calc_bmr
+          bmr = @user.calc_bmr
           render json: { bmr: bmr }
         else
           render400(nil, user.errors.full_messages)
@@ -25,6 +25,18 @@ module Api
 
         def user_params
           params.require(:user).permit(:gender, :birth, :height, :weight)
+        end
+
+        def set_attributes_for_bmr(user)
+          @attributes_for_bmr = {
+            user: {
+              gender: user.gender,
+              birth: user.birth,
+              height: user.height,
+              weight: user.weight,
+              bmr: user.bmr
+            }
+          }
         end
     end
   end
