@@ -6,7 +6,16 @@
         text
         class="text-capitalize"
       >
-        Home
+        home
+      </v-btn>
+    </v-col>
+    <v-col>
+      <v-btn
+        :to="{ name: 'MyPage' }"
+        text
+        class="text-capitalize"
+      >
+        mypage
       </v-btn>
     </v-col>
     <v-col>

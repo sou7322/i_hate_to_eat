@@ -29,12 +29,10 @@ module Api
 
         def set_attributes_for_bmr(user)
           @attributes_for_bmr = {
-            user: {
-              gender: user.gender,
-              birth: user.birth,
-              height: user.height,
-              weight: user.weight,
-            },
+            gender: user.gender,
+            birth: user.birth,
+            height: user.height,
+            weight: user.weight,
             bmr: user.bmr
           }
         end
