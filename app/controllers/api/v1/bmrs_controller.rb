@@ -34,8 +34,8 @@ module Api
               birth: user.birth,
               height: user.height,
               weight: user.weight,
-              bmr: user.bmr
-            }
+            },
+            bmr: user.bmr
           }
         end
     end
