@@ -4,13 +4,15 @@ import createPersistedState from 'vuex-persistedstate';
 
 import flashMessage from './modules/flashMessage';
 import authUser from './modules/authUser';
+import bmrParams from './modules/bmrParams';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
     flashMessage,
-    authUser
+    authUser,
+    bmrParams
   },
 
   plugins: [createPersistedState({
