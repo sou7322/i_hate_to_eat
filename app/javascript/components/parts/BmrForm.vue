@@ -72,7 +72,7 @@
               <validation-provider
                 v-slot="{ errors }"
                 name="身長"
-                rules="required|between:140,200|numeric"
+                rules="required|numeric"
               >
                 <v-text-field
                   v-model.number="height"
@@ -89,7 +89,7 @@
               <validation-provider
                 v-slot="{ errors }"
                 name="体重"
-                rules="required|between:40,100|numeric"
+                rules="required|numeric"
               >
                 <v-text-field
                   v-model.number="weight"
