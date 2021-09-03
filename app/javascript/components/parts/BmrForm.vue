@@ -1,9 +1,12 @@
 <template>
   <v-row>
     <v-col>
-      <validation-observer>
-        <v-form @submit.prevent="updateBmr">
-          <div v-if="railsErrors.errorMessages.length != 0">
+      <validation-observer
+        ref="observer"
+        v-slot="{ handleSubmit }"
+      >
+        <v-form @submit.prevent="handleSubmit(updateBmr)">
+          <div v-if="railsErrors.show">
             <v-alert
               v-for="e in railsErrors.errorMessages"
               :key="e"
@@ -37,32 +40,43 @@
           </v-row>
           <v-row>
             <v-col>
-              <validation-provider>
-                <v-menu
-                  v-model="birthInput"
-                  :close-on-content-click="false"
-                >
-                  <template #activator="{ on }">
+              <v-menu
+                v-model="birthInput"
+                :close-on-content-click="false"
+              >
+                <template #activator="{ on }">
+                  <validation-provider
+                    v-slot="{ errors }"
+                    name="生年月日"
+                    rules="required|abailable_age"
+                  >
                     <v-text-field
                       v-model="birth"
+                      :error-messages="errors"
                       label="生年月日"
+                      type="date"
                       readonly
                       v-on="on"
                     />
-                  </template>
-                  <v-date-picker
-                    v-model="birth"
-                    @input="birthInput = false"
-                  />
-                </v-menu>
-              </validation-provider>
+                  </validation-provider>
+                </template>
+                <v-date-picker
+                  v-model="birth"
+                  @input="birthInput = false"
+                />
+              </v-menu>
             </v-col>
           </v-row>
           <v-row>
             <v-col>
-              <validation-provider>
+              <validation-provider
+                v-slot="{ errors }"
+                name="身長"
+                rules="required|between:140,200|numeric"
+              >
                 <v-text-field
                   v-model.number="height"
+                  :error-messages="errors"
                   type="number"
                   suffix="cm"
                   label="身長"
@@ -72,9 +86,14 @@
           </v-row>
           <v-row>
             <v-col>
-              <validation-provider>
+              <validation-provider
+                v-slot="{ errors }"
+                name="体重"
+                rules="required|between:40,100|numeric"
+              >
                 <v-text-field
                   v-model.number="weight"
+                  :error-messages="errors"
                   type="number"
                   suffix="kg"
                   label="体重"
@@ -106,6 +125,7 @@ export default {
   data() {
     return {
       railsErrors: {
+        show: false,
         message: '',
         errorMessages: []
       },
@@ -156,7 +176,12 @@ export default {
         .catch(error => {
           let e = error.response;
           console.error(e.status);
-          if (e.data. errors ) { this.railsErrors.errorMessages = e.data. errors; };
+
+          if (e.data.errors) { this.railsErrors.errorMessages = e.data.errors; };
+          if (this.railsErrors.errorMessages.length != 0) {
+            this.railsErrors.show = true;
+            setTimeout(() => { this.railsErrors.show = false; }, 5000);
+          }
         });
     }
   }
