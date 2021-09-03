@@ -57,10 +57,10 @@ RSpec.describe "Authentications", type: :system do
 
   describe "ログアウト" do
     context "ログアウトボタンをクリック" do
-      fit "ログアウト処理が成功する" do
+      it "ログアウト処理が成功する" do
         visit "/"
         # リンク名は後々修正
-        click_button "login"  
+        click_button "login"
         fill_in "メールアドレス", with: user.email
         fill_in "パスワード", with: "password"
         click_button "ログイン"

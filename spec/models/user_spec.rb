@@ -3,12 +3,17 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "バリデーション" do
     context "有効な属性値の場合" do
-      it "名前、メールアドレス、パスワード、パスワード（確認）があればvalidであること" do
+      fit "名前、メールアドレス、パスワード、パスワード（確認）があればvalidであること" do
         user = build(:user)
         user.valid?
         expect(user).to be_valid
         expect(user.errors).to be_empty
+
         expect(user.role).to eq 'general'
+        expect(user.gender).to eq 'female'
+        expect(user.height).to eq 0
+        expect(user.weight).to eq 0.0
+        expect(user.bmr).to eq 0.0
       end
 
       it "パスワードが5文字の場合、validであること" do
@@ -151,7 +156,7 @@ RSpec.describe User, type: :model do
 
       it "生年月日の値が未来の日付の場合、invalidになること" do
         user_with_future_date = create(:user)
-        dt = Time.current.since(1.days)
+        dt = Time.current.since(1.day)
 
         user_with_future_date.birth = dt
         user_with_future_date.valid?
@@ -159,7 +164,7 @@ RSpec.describe User, type: :model do
         expect(user_with_future_date.errors[:birth]).to include "未来の日付は入力できません"
       end
 
-      fit "現在17歳になる生年月日の場合、invalidになること" do
+      it "現在17歳になる生年月日の場合、invalidになること" do
         user_under17 = create(:user)
         dt = Time.current.ago(17.years)
 
