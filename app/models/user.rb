@@ -9,6 +9,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     validates :role
     validates :gender
+    validates :birth, birth: true
     validates :height, numericality: { only_integer: true }
 
     with_options numericality: true do
@@ -30,11 +31,11 @@ class User < ApplicationRecord
     end
   end
 
-  private
+  def calc_age
+    (Time.zone.today.strftime("%Y%m%d").to_i - birth.strftime("%Y%m%d").to_i) / 10_000
+  end
 
-    def calc_age
-      (Time.zone.today.strftime("%Y%m%d").to_i - birth.strftime("%Y%m%d").to_i) / 10_000
-    end
+  private
 
     def new_or_changes_password
       new_record? || changes[:crypted_password]
