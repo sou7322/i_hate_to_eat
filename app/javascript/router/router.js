@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import TopPage from '../components/pages/top/TopPage';
-import RegisterPage from '../components/pages/register/RegisterPage';
-import HomePage from '../components/pages/home/HomePage';
+import TopPage from '../components/pages/TopPage';
+import RegisterPage from '../components/pages/RegisterPage';
+import HomePage from '../components/pages/HomePage';
+import MyPage from '../components/pages/MyPage';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const router = new VueRouter({
       path: '/home',
       component: HomePage,
       name: 'HomePage'
+    },
+    {
+      path: '/mypage',
+      component: MyPage,
+      name: 'MyPage'
     }
   ]
 });

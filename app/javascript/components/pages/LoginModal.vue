@@ -32,7 +32,7 @@
         >
           <v-form @submit.prevent="handleSubmit(loginUser)">
             <v-card-text>
-              <div v-if="railsErrors.errorMessages.length != 0">
+              <div v-if="railsErrors.show">
                 <v-alert
                   v-for="e in railsErrors.errorMessages"
                   :key="e"
@@ -113,6 +113,7 @@ export default {
         password: ''
       },
       railsErrors: {
+        show: false,
         message: '',
         errorMessages: []
       }
@@ -135,7 +136,12 @@ export default {
         .catch(error => {
           let e = error.response;
           console.error(e.status);
-          if (e.data.errors ) { this.railsErrors.errorMessages = e.data.errors; };
+
+          if (e.data.errors) { this.railsErrors.errorMessages = e.data.errors; };
+          if (this.railsErrors.errorMessages.length != 0) {
+            this.railsErrors.show = true;
+            setTimeout(() => { this.railsErrors.show = false; }, 5000);
+          }
         });
     }
   }

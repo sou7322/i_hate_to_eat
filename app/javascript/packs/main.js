@@ -11,7 +11,7 @@ import router from '../router/router';
 import axios from 'axios';
 import { csrfToken } from 'rails-ujs';
 import AxiosPlugin from '../plugins/axiosPlugin';
-import vuetify from '../vty/vty';
+import vuetify from '../vuetify/vuetify';
 import * as veeValidate from '../plugins/vee-validate';
 import store from '../store/index';
 import { initialState } from '../store/modules/authUser';
