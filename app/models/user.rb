@@ -9,7 +9,6 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     validates :role
     validates :gender
-    validates :birth, birth: true
     validates :height, numericality: { only_integer: true }
 
     with_options numericality: true do
@@ -17,6 +16,7 @@ class User < ApplicationRecord
       validates :bmr
     end
   end
+  validates :birth, birth: true
   validates :password, length: { minimum: 5 }, if: :new_or_changes_password
   validates :password, confirmation: true, if: :new_or_changes_password
   validates :password_confirmation, presence: true, if: :new_or_changes_password

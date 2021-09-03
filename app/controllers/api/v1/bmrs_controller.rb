@@ -13,7 +13,7 @@ module Api
           bmr = @user.calc_bmr.floor
           render json: { bmr: bmr } if @user.update(bmr: bmr)
         else
-          render400(nil, user.errors.full_messages)
+          render400(nil, @user.errors.full_messages)
         end
       end
 
