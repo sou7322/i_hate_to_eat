@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  # Enums
   enum gender: { female: 0, male: 10 }
   enum role: { general: 0, admin: 10 }
 
+  # Validations
   with_options presence: true do
     validates :name, length: { maximum: 50 }
     validates :email, uniqueness: true
@@ -15,12 +17,21 @@ class User < ApplicationRecord
       validates :weight
       validates :bmr
     end
+
+    with_options numericality: { greater_than_or_equal_to: 0.1,
+                                    less_than_or_equal_to: 0.8 } do
+      validates :percentage_protein
+      validates :percentage_fat
+      validates :percentage_carbohydrate
+    end
   end
+
   validates :birth, birth: true
   validates :password, length: { minimum: 5 }, if: :new_or_changes_password
   validates :password, confirmation: true, if: :new_or_changes_password
   validates :password_confirmation, presence: true, if: :new_or_changes_password
 
+  # Instance methods
   def calc_bmr
     age = calc_age
 
