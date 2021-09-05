@@ -32,6 +32,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: :new_or_changes_password
 
   # Instance methods
+  # BMR
   def calc_bmr
     age = calc_age
 
@@ -46,7 +47,36 @@ class User < ApplicationRecord
     (Time.zone.today.strftime("%Y%m%d").to_i - birth.strftime("%Y%m%d").to_i) / 10_000
   end
 
+  # PFC Balance
+  def set_percentage
+    return [
+      (percentage_protein * 100).floor,
+      (percentage_fat * 100).floor,
+      (percentage_carbohydrate * 100).floor
+    ]
+  end
+
+  def set_amount_pfc
+    return [
+      calc_amount_protein,
+      calc_amount_fat,
+      calc_amount_carbo
+    ]
+  end
+
   private
+
+    def calc_amount_protein
+      bmr * percentage_protein / 4
+    end
+
+    def calc_amount_fat
+      bmr * percentage_fat / 9
+    end
+
+    def calc_amount_carbo
+      bmr * percentage_carbohydrate / 4
+    end
 
     def new_or_changes_password
       new_record? || changes[:crypted_password]
