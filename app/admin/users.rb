@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   permit_params :name, :email, :password, :password_confirmation,
-                :role, :gender, :birth, :height, :weight
+                :role, :gender, :birth, :height, :weight,
+                :percentage_protein, :percentage_fat, :percentage_carbohydrate
 
   # 一覧ページの表示項目
   index do
@@ -30,6 +31,9 @@ ActiveAdmin.register User do
       row(:height)
       row(:weight)
       row(:bmr)
+      row(:percentage_protein)
+      row(:percentage_fat)
+      row(:percentage_carbohydrate)
       row(:created_at)
       row(:updated_at)
     end
@@ -47,6 +51,9 @@ ActiveAdmin.register User do
       f.input :birth
       f.input :height
       f.input :weight
+      f.input :percentage_protein
+      f.input :percentage_fat
+      f.input :percentage_carbohydrate
     end
     f.actions
   end
