@@ -6,6 +6,9 @@ class User < ApplicationRecord
   enum role: { general: 0, admin: 10 }
 
   # Validations
+  include ActiveModel::Validations
+  validates_with PfcValidator
+
   with_options presence: true do
     validates :name, length: { maximum: 50 }
     validates :email, uniqueness: true
@@ -48,12 +51,12 @@ class User < ApplicationRecord
   end
 
   # PFC Balance
-  def set_percentage
-    return [
-      (percentage_protein * 100).floor,
-      (percentage_fat * 100).floor,
-      (percentage_carbohydrate * 100).floor
-    ]
+  def set_percentage_pfc
+    return {
+      pctP: percentage_protein,
+      pctF: percentage_fat,
+      pctC: percentage_carbohydrate
+    }
   end
 
   def set_amount_pfc
