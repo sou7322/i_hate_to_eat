@@ -4,10 +4,12 @@ module Api
       before_action :set_user
 
       def show
-        attributes = set_attributes_for_bmr(@user).to_json
-        render json: attributes
+        set_attributes_for_bmr(@user)
+        json_string = @attributes_for_bmr.to_json
+        render json: json_string
       end
 
+      # TODO: 1アクションの中で2度updateしている、要リファクタリング
       def update
         if @user.update(user_params)
           bmr = @user.calc_bmr.floor

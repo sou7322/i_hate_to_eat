@@ -4,7 +4,7 @@ class PfcValidator < ActiveModel::Validator
           record.percentage_fat +
           record.percentage_carbohydrate
 
-    unless sum == 1.0
+    unless sum == 1
       record.errors.add(
         :base,
         "PFCは合計で100%になるよう設定してください"

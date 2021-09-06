@@ -22,7 +22,7 @@ class User < ApplicationRecord
     end
 
     with_options numericality: { greater_than_or_equal_to: 0.1,
-                                    less_than_or_equal_to: 0.8 } do
+                                 less_than_or_equal_to: 0.8 } do
       validates :percentage_protein
       validates :percentage_fat
       validates :percentage_carbohydrate
@@ -52,19 +52,15 @@ class User < ApplicationRecord
 
   # PFC Balance
   def set_percentage_pfc
-    return {
-      pctP: percentage_protein,
+    { pctP: percentage_protein,
       pctF: percentage_fat,
-      pctC: percentage_carbohydrate
-    }
+      pctC: percentage_carbohydrate }
   end
 
   def set_amount_pfc
-    return [
-      calc_amount_protein,
-      calc_amount_fat,
-      calc_amount_carbo
-    ]
+    [calc_amount_protein,
+     calc_amount_fat,
+     calc_amount_carbo]
   end
 
   private
