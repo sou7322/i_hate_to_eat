@@ -1,6 +1,6 @@
 module Api
   module V1
-    class PfcsController < ApplicationController
+    class PfcsController < BaseController
       before_action :set_user
 
       def show
@@ -9,7 +9,13 @@ module Api
         render json: json_string
       end
 
-      def update; end
+      def update
+        if @user.update(user_params)
+          head :ok
+        else
+          render400(nil, @user.errors.full_messages)
+        end
+      end
 
       private
 
@@ -25,7 +31,7 @@ module Api
 
       def set_attributes_for_pfc(user)
         @data_of_pfc = {
-          pct: user.set_percentage.map,
+          pct: user.set_percentage_pfc,
           amount: user.set_amount_pfc
         }
       end
