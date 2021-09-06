@@ -8,7 +8,7 @@ const state = {
   bmr: ''
 };
 
-// ToDo: 要リファクタリング
+// TODO: 要リファクタリング
 const mutations = {
   updateGender(state, gender) {
     state.user.gender = gender;
@@ -27,7 +27,7 @@ const mutations = {
   }
 };
 
-// ToDo: 要リファクタリング
+// TODO: 要リファクタリング
 const actions = {
   setAttributes(context, attributes) {
     context.commit('updateGender', attributes.gender);

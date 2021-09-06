@@ -133,7 +133,7 @@ export default {
     };
   },
   computed: {
-    // ToDo: 要リファクタリング
+    // TODO: 要リファクタリング
     gender: {
       get() { return this.$store.state.bmrParams.user.gender; },
       set(value) { this.$store.commit('bmrParams/updateGender', value); }
@@ -156,7 +156,12 @@ export default {
     }
   },
   mounted() {
-    this.axios
+    // TODO: 内容をmethodsに移してmountedはthis.で呼び出すだけに
+    this.setData();
+  },
+  methods: {
+    setData() {
+      this.axios
       .get('/api/v1/bmr')
       .then(response => {
         this.$store.dispatch(
@@ -164,8 +169,7 @@ export default {
           response.data
         );
       });
-  },
-  methods: {
+    },
     updateBmr() {
       this.axios
         .patch('/api/v1/bmr', { user: this.$store.state.bmrParams.user })
