@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { calcAge } from './vee-validate-func';
+import { calcAge, checkSum } from './vee-validate-func';
 
 import {
   ValidationProvider,
@@ -13,7 +13,9 @@ import {
   confirmed,
   email,
   numeric,
+  max_value,
   min,
+  min_value,
   required
 } from 'vee-validate/dist/rules';
 
@@ -42,9 +44,19 @@ extend('numeric', {
   message: '数字で入力してください'
 });
 
+extend('max_value', {
+  ...max_value,
+  message: '値は{max}以下にしてください'
+});
+
 extend('min', {
   ...min,
   message: '{length}文字以上で入力してください'
+});
+
+extend('min_value', {
+  ...min_value,
+  message: '値は{min}以上にしてください'
 });
 
 extend('required', {

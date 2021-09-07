@@ -9,7 +9,7 @@ RSpec.describe "Bmrs", type: :system do
       click_on "Mypage"
     end
 
-    # ToDo: システムスペックを作成
+    # TODO: システムスペックを作成
     context "フォームの入力値が有効" do
       context "性別を選択" do
         fit "女性を選択した場合、設定に成功すること"
