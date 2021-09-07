@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :name, length: { maximum: 50 }
-    validates :email, uniqueness: true
+    validates :email, uniqueness: { case_sensitive: false }
     validates :role
     validates :gender
     validates :height, numericality: { only_integer: true }
