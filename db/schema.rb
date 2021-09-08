@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_051911) do
+ActiveRecord::Schema.define(version: 2021_09_07_140430) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -24,6 +24,55 @@ ActiveRecord::Schema.define(version: 2021_09_04_051911) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "dietary_reference_intakes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "gender", null: false
+    t.integer "age_top", null: false
+    t.integer "age_bottom", null: false
+    t.float "vitamin_a", null: false
+    t.float "upper_limit_vitamin_a", null: false
+    t.float "vitamin_d", null: false
+    t.float "upper_limit_vitamin_d", null: false
+    t.float "vitamin_e", null: false
+    t.float "upper_limit_vitamin_e", null: false
+    t.float "vitamin_k", null: false
+    t.float "vitamin_b1", null: false
+    t.float "vitamin_b2", null: false
+    t.float "niacin", null: false
+    t.float "upper_limit_niacin", null: false
+    t.float "vitamin_b6", null: false
+    t.float "upper_limit_vitamin_b6", null: false
+    t.float "vitamin_b12", null: false
+    t.float "folate", null: false
+    t.float "upper_limit_folate", null: false
+    t.float "pantothenic_acid", null: false
+    t.float "biotin", null: false
+    t.float "vitamin_c", null: false
+    t.float "potassium", null: false
+    t.float "calcium", null: false
+    t.float "upper_limit_calcium", null: false
+    t.float "magnesium", null: false
+    t.float "phosphorus", null: false
+    t.float "upper_limit_phosphorus", null: false
+    t.float "iron", null: false
+    t.float "upper_limit_iron", null: false
+    t.float "zinc", null: false
+    t.float "upper_limit_zinc", null: false
+    t.float "copper", null: false
+    t.float "upper_limit_copper", null: false
+    t.float "manganese", null: false
+    t.float "upper_limit_manganese", null: false
+    t.float "iodine", null: false
+    t.float "upper_limit_iodine", null: false
+    t.float "selenium", null: false
+    t.float "upper_limit_selenium", null: false
+    t.float "chromium", null: false
+    t.float "upper_limit_chromium", null: false
+    t.float "molybdenum", null: false
+    t.float "upper_limit_molybdenum", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
