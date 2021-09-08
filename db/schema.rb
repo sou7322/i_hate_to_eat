@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_140430) do
+ActiveRecord::Schema.define(version: 2021_09_08_082708) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -91,7 +91,10 @@ ActiveRecord::Schema.define(version: 2021_09_07_140430) do
     t.float "percentage_protein", default: 0.2, null: false
     t.float "percentage_fat", default: 0.2, null: false
     t.float "percentage_carbohydrate", default: 0.6, null: false
+    t.bigint "dietary_reference_intake_id"
+    t.index ["dietary_reference_intake_id"], name: "index_users_on_dietary_reference_intake_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "users", "dietary_reference_intakes"
 end
