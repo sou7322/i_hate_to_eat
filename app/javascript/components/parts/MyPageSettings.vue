@@ -10,25 +10,27 @@
       cols="12"
       md="4"
     >
-      <my-page-pfc-balance />
+      <my-page-setting-pfc />
     </v-col>
     <v-col
       cols="12"
       md="4"
     >
-      <p>coming soon...</p>
+      <my-page-setting-dri />
     </v-col>
   </v-row>
 </template>
 
 <script>
 import BmrForm from './BmrForm';
-import MyPagePfcBalance from '../parts/MyPagePfcBalance';
+import MyPageSettingPfc from '../parts/MyPageSettingPfc';
+import MyPageSettingDri from '../parts/MyPageSettingDri';
 
 export default {
   components: {
     BmrForm,
-    MyPagePfcBalance
+    MyPageSettingPfc,
+    MyPageSettingDri
   },
 };
 </script>

@@ -13,22 +13,22 @@
         </v-row>
       </v-alert>
     </div>
-    <my-page-pfc-balance-chart
+    <my-page-setting-pfc-chart
       :chart-data="chartdata"
       :options="options"
     />
-    <my-page-pfc-balance-form @submit="updatePfc" />
+    <my-page-setting-pfc-form @submit="updatePfc" />
   </div>
 </template>
 
 <script>
-import MyPagePfcBalanceChart from './MyPagePfcBalanceChart';
-import MyPagePfcBalanceForm from './MyPagePfcBalanceForm';
+import MyPageSettingPfcChart from './MyPageSettingPfcChart';
+import MyPageSettingPfcForm from './MyPageSettingPfcForm';
 
 export default {
   components: {
-    MyPagePfcBalanceChart,
-    MyPagePfcBalanceForm
+    MyPageSettingPfcChart,
+    MyPageSettingPfcForm
   },
   data(){
     return {
