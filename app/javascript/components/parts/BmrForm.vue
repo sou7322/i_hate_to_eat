@@ -5,7 +5,7 @@
         ref="observer"
         v-slot="{ handleSubmit }"
       >
-        <v-form @submit.prevent="handleSubmit(updateBmr)">
+        <v-form @submit.prevent="handleSubmit(updateBmrAndReference)">
           <div v-if="railsErrors.show">
             <v-alert
               v-for="e in railsErrors.errorMessages"
@@ -26,6 +26,7 @@
                 label="性別"
                 row
                 mandatory
+                :disabled="disableGender"
               >
                 <v-radio
                   label="女性"
@@ -37,6 +38,13 @@
                 />
               </v-radio-group>
             </v-col>
+            <v-btn
+              v-show="disableGender"
+              x-small
+              @click="changeGender"
+            >
+              変更
+            </v-btn>
           </v-row>
           <v-row>
             <v-col>
@@ -56,6 +64,7 @@
                       label="生年月日"
                       type="date"
                       readonly
+                      :disabled="disableBirth"
                       v-on="on"
                     />
                   </validation-provider>
@@ -66,6 +75,13 @@
                 />
               </v-menu>
             </v-col>
+            <v-btn
+              v-show="disableBirth"
+              x-small
+              @click="changeBirth"
+            >
+              変更
+            </v-btn>
           </v-row>
           <v-row>
             <v-col>
@@ -116,6 +132,9 @@
       <p>
         基礎代謝量: <span class="text-h5">{{ bmr }}</span>kcal
       </p>
+      <!-- TODO: 国立健康・栄養研究所の式に変更予定 -->
+      <p>BMR（基礎代謝量）の計算にはハリス・ベネディクト方程式(改良版)を採用しています</p>
+      <p>日常的に家事・通勤などにおける歩行運動またはスポーツなどの身体活動を行なっている場合は、必要なエネルギー量は多くなります。</p>
     </v-col>
   </v-row>
 </template>
@@ -129,7 +148,9 @@ export default {
         message: '',
         errorMessages: []
       },
-      birthInput: false
+      disableGender: true,
+      disableBirth: true,
+      birthInput: false,
     };
   },
   computed: {
@@ -156,19 +177,29 @@ export default {
     }
   },
   mounted() {
-    // TODO: 内容をmethodsに移してmountedはthis.で呼び出すだけに
     this.setData();
   },
   methods: {
+    changeGender() {
+      this.disableGender = !this.disableGender;
+    },
+    changeBirth() {
+      this.disableBirth = !this.disableBirth;
+    },
     setData() {
       this.axios
-      .get('/api/v1/bmr')
-      .then(response => {
-        this.$store.dispatch(
-          'bmrParams/setAttributes',
-          response.data
-        );
-      });
+        .get('/api/v1/bmr')
+        .then(response => {
+          this.$store.dispatch(
+            'bmrParams/setAttributes',
+            response.data
+          );
+        });
+    },
+    updateBmrAndReference() {
+      this.updateBmr();
+      // TODO: gender, birthが変更された時のみ実行
+      this.updateReferenceIntake();
     },
     updateBmr() {
       this.axios
@@ -186,6 +217,21 @@ export default {
             this.railsErrors.show = true;
             setTimeout(() => { this.railsErrors.show = false; }, 5000);
           }
+        });
+    },
+    updateReferenceIntake() {
+      this.axios
+        .patch('/api/v1/users_dietary_reference')
+        .then(response => {
+          console.log(response.status);
+          this.$store.dispatch(
+            'referenceIntakes/setAttributes',
+            response.data.data.attributes
+          );
+        })
+        .catch(error => {
+          let e = error.response;
+          console.error(e.status);
         });
     }
   }
