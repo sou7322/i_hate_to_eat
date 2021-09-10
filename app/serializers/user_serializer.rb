@@ -2,6 +2,8 @@ class UserSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name, :email, :role, :gender, :birth,
              :height, :weight, :bmr
+
+  belongs_to :dietary_reference_intake
 end
 
 # == Schema Information
