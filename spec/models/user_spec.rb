@@ -14,6 +14,9 @@ RSpec.describe User, type: :model do
         expect(user.height).to eq 0
         expect(user.weight).to eq 0.0
         expect(user.bmr).to eq 0.0
+        expect(user.percentage_protein).to eq 0.2
+        expect(user.percentage_fat).to eq 0.2
+        expect(user.percentage_carbohydrate).to eq 0.6
       end
 
       it "パスワードが5文字の場合、validであること" do

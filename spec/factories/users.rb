@@ -2,9 +2,11 @@ FactoryBot.define do
   factory :user do
     sequence(:name, "name_0")
     sequence(:email) { |n| "user_#{n}@example.com" }
+    gender { "female" }
+    birth { "1995-03-22" }
     password { "password" }
     password_confirmation { "password" }
-    role { 0 }
+    association :dietary_reference_intake
   end
 end
 

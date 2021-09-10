@@ -3,15 +3,24 @@ require 'rails_helper'
 RSpec.describe "Registers", type: :system, js: true do
   describe "ユーザー新規登録" do
     before do
+      create(:dietary_reference_intake, :f_u29)
+      create(:dietary_reference_intake, :f_u49)
+      create(:dietary_reference_intake, :f_u64)
+      create(:dietary_reference_intake, :m_u29)
+      create(:dietary_reference_intake, :m_u49)
+      create(:dietary_reference_intake, :m_u64)
+
       visit "/"
-      # リンク名は後々修正
-      click_link "to register"
+      # TODO: フッターのボタンを押せるように
+      click_link "register"
     end
 
     context "フォームの入力値が有効" do
-      it "ユーザーの新規作成が成功すること" do
+      fit "ユーザーの新規作成が成功すること" do
         fill_in "ユーザーネーム", with: "test_user"
         fill_in "メールアドレス", with: "test_user@example.com"
+        choose "女性"
+        fill_in "生年月日", with: "1995-03-22"
         fill_in "パスワード", with: "12345"
         fill_in "パスワード（確認）", with: "12345"
         click_button "登録"
