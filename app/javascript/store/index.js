@@ -6,6 +6,7 @@ import flashMessage from './modules/flashMessage';
 import authUser from './modules/authUser';
 import bmrParams from './modules/bmrParams';
 import pfcBalance from './modules/pfcBalance';
+import referenceIntakes from './modules/referenceIntakes';
 
 Vue.use(Vuex);
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     flashMessage,
     authUser,
     bmrParams,
-    pfcBalance
+    pfcBalance,
+    referenceIntakes
   },
 
   plugins: [createPersistedState({
