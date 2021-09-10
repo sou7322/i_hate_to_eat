@@ -149,7 +149,7 @@ RSpec.describe User, type: :model do
           user_valid_pfc.valid?
           expect(user_valid_pfc).to be_valid
           expect(user_valid_pfc.errors).to be_empty
-        end          
+        end
       end
     end
 
@@ -225,7 +225,7 @@ RSpec.describe User, type: :model do
           user_with_decimals.valid?
           expect(user_with_decimals).to be_invalid
           expect(user_with_decimals.errors[:height]).to include "は整数で入力してください"
-        end          
+        end
       end
 
       it "体重の値が数値でない場合、invalidになること" do
@@ -248,27 +248,27 @@ RSpec.describe User, type: :model do
         it "生年月日の値が未来の日付の場合、invalidになること" do
           user_with_future_date = build(:user)
           dt = Time.current.since(1.day)
-  
+
           user_with_future_date.birth = dt
           user_with_future_date.valid?
           expect(user_with_future_date).to be_invalid
           expect(user_with_future_date.errors[:birth]).to include "未来の日付は入力できません"
         end
-  
+
         it "現在17歳になる生年月日の場合、invalidになること" do
           user_under17 = build(:user)
           dt = Time.current.ago(17.years)
-  
+
           user_under17.birth = dt
           user_under17.valid?
           expect(user_under17).to be_invalid
           expect(user_under17.errors[:birth]).to include "本サービスは18歳以上60歳未満の方が対象です"
         end
-  
+
         it "現在60歳になる生年月日の場合、invalidになること" do
           user_over60 = build(:user)
           dt = Time.current.ago(60.years)
-  
+
           user_over60.birth = dt
           user_over60.valid?
           expect(user_over60).to be_invalid

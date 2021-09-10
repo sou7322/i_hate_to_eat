@@ -81,7 +81,7 @@ ActiveAdmin.register DietaryReferenceIntake do
     f.inputs do
       f.input :gender, collention: DietaryReferenceIntake.genders_i18n.invert
       f.input :age_bottom
-      f.input :age_top        
+      f.input :age_top
     end
     f.actions
   end

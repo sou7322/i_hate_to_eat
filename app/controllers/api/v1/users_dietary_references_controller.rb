@@ -7,8 +7,8 @@ module Api
       def show
         dri = @user.dietary_reference_intake
         json_string = DietaryReferenceIntakeSerializer
-                        .new(dri)
-                        .serialized_json
+                      .new(dri)
+                      .serialized_json
         render json: json_string
       end
 
@@ -18,8 +18,8 @@ module Api
 
         if @user.update(dietary_reference_intake_id: dri_id)
           json_string = DietaryReferenceIntakeSerializer
-                          .new(@user.dietary_reference_intake)
-                          .serialized_json
+                        .new(@user.dietary_reference_intake)
+                        .serialized_json
           render json: json_string
         else
           render400(nil, @user.errors.full_messages)
