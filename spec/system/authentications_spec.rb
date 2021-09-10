@@ -6,7 +6,7 @@ RSpec.describe "Authentications", type: :system do
   describe "ログイン" do
     before do
       visit "/"
-      # リンク名は後々修正
+      # TODO: フッターのボタンを押せるように
       click_button "login"
     end
 

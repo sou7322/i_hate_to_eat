@@ -6,6 +6,7 @@ RSpec.describe "Bmrs", type: :system do
   describe "BMR設定" do
     before do
       login_as(user)
+      # TODO: フッターのボタンを押せるように
       click_on "Mypage"
     end
 

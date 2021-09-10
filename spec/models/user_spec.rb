@@ -14,6 +14,9 @@ RSpec.describe User, type: :model do
         expect(user.height).to eq 0
         expect(user.weight).to eq 0.0
         expect(user.bmr).to eq 0.0
+        expect(user.percentage_protein).to eq 0.2
+        expect(user.percentage_fat).to eq 0.2
+        expect(user.percentage_carbohydrate).to eq 0.6
       end
 
       it "パスワードが5文字の場合、validであること" do
@@ -146,7 +149,7 @@ RSpec.describe User, type: :model do
           user_valid_pfc.valid?
           expect(user_valid_pfc).to be_valid
           expect(user_valid_pfc.errors).to be_empty
-        end          
+        end
       end
     end
 
@@ -222,7 +225,7 @@ RSpec.describe User, type: :model do
           user_with_decimals.valid?
           expect(user_with_decimals).to be_invalid
           expect(user_with_decimals.errors[:height]).to include "は整数で入力してください"
-        end          
+        end
       end
 
       it "体重の値が数値でない場合、invalidになること" do
@@ -245,27 +248,27 @@ RSpec.describe User, type: :model do
         it "生年月日の値が未来の日付の場合、invalidになること" do
           user_with_future_date = build(:user)
           dt = Time.current.since(1.day)
-  
+
           user_with_future_date.birth = dt
           user_with_future_date.valid?
           expect(user_with_future_date).to be_invalid
           expect(user_with_future_date.errors[:birth]).to include "未来の日付は入力できません"
         end
-  
+
         it "現在17歳になる生年月日の場合、invalidになること" do
           user_under17 = build(:user)
           dt = Time.current.ago(17.years)
-  
+
           user_under17.birth = dt
           user_under17.valid?
           expect(user_under17).to be_invalid
           expect(user_under17.errors[:birth]).to include "本サービスは18歳以上60歳未満の方が対象です"
         end
-  
+
         it "現在60歳になる生年月日の場合、invalidになること" do
           user_over60 = build(:user)
           dt = Time.current.ago(60.years)
-  
+
           user_over60.birth = dt
           user_over60.valid?
           expect(user_over60).to be_invalid
@@ -358,24 +361,30 @@ end
 #
 # Table name: users
 #
-#  id                      :bigint           not null, primary key
-#  birth                   :date
-#  bmr                     :float(24)        default(0.0), not null
-#  crypted_password        :string(255)
-#  email                   :string(255)      not null
-#  gender                  :integer          default("female"), not null
-#  height                  :integer          default(0), not null
-#  name                    :string(255)      not null
-#  percentage_carbohydrate :float(24)        default(0.6), not null
-#  percentage_fat          :float(24)        default(0.2), not null
-#  percentage_protein      :float(24)        default(0.2), not null
-#  role                    :integer          default("general"), not null
-#  salt                    :string(255)
-#  weight                  :float(24)        default(0.0), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
+#  id                          :bigint           not null, primary key
+#  birth                       :date
+#  bmr                         :float(24)        default(0.0), not null
+#  crypted_password            :string(255)
+#  email                       :string(255)      not null
+#  gender                      :integer          default("female"), not null
+#  height                      :integer          default(0), not null
+#  name                        :string(255)      not null
+#  percentage_carbohydrate     :float(24)        default(0.6), not null
+#  percentage_fat              :float(24)        default(0.2), not null
+#  percentage_protein          :float(24)        default(0.2), not null
+#  role                        :integer          default("general"), not null
+#  salt                        :string(255)
+#  weight                      :float(24)        default(0.0), not null
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  dietary_reference_intake_id :bigint
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_dietary_reference_intake_id  (dietary_reference_intake_id)
+#  index_users_on_email                        (email) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (dietary_reference_intake_id => dietary_reference_intakes.id)
 #

@@ -11,27 +11,27 @@
     </v-tab>
 
     <v-tab-item>
-      <my-page-intake-standards />
+      <my-page-settings />
     </v-tab-item>
     <v-tab-item>
       <p>
-        coming soon...
+        my-page-accounts
       </p>
     </v-tab-item>
     <v-tab-item>
       <p>
-        coming soon...
+        my-page-unsubscribe
       </p>
     </v-tab-item>
   </v-tabs>
 </template>
 
 <script>
-import MyPageIntakeStandards from '../parts/MyPageIntakeStandards';
+import MyPageSettings from '../parts/MyPageSettings.vue';
 
 export default {
   components: {
-    MyPageIntakeStandards
+    MyPageSettings
   }
 };
 </script>
