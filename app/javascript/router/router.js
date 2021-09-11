@@ -5,6 +5,7 @@ import TopPage from '../components/pages/TopPage';
 import RegisterPage from '../components/pages/RegisterPage';
 import HomePage from '../components/pages/HomePage';
 import MyPage from '../components/pages/MyPage';
+import FoodIndex from '../components/pages/FoodIndex';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,11 @@ const router = new VueRouter({
       path: '/register',
       component: RegisterPage,
       name: 'RegisterPage'
+    },
+    {
+      path: '/search',
+      component: FoodIndex,
+      name: 'FoodIndex'
     },
     {
       path: '/home',
