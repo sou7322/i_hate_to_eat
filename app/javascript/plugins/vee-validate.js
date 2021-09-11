@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { calcAge, checkSum } from './vee-validate-func';
+import { calcAge } from './vee-validate-func';
 
 import {
   ValidationProvider,
@@ -65,10 +65,12 @@ extend('required', {
 });
 
 // Custom rules
-extend('abailable_age', (value) => {
-  const age = calcAge(value);
-  if (age >= 18 && age < 60) {
-    return true;
-  };
-  return '本サービスは18歳以上60歳未満の方が対象です';
+extend('abailable_age', {
+  message: '本サービスは18歳以上60歳未満の方が対象です',
+  validate(value) {
+    const age = calcAge(value);
+    if (age >= 18 && age < 60) {
+      return true;
+    };
+  }
 });
