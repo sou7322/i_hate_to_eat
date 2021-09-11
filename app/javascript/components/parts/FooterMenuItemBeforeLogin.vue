@@ -21,6 +21,15 @@
     <v-col>
       <login-modal />
     </v-col>
+    <v-col>
+      <v-btn
+        :to="{ name: 'FoodIndex' }"
+        text
+        class="text-capitalize"
+      >
+        foods
+      </v-btn>
+    </v-col>
   </v-row>
 </template>
 

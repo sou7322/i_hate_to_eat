@@ -11,6 +11,15 @@
     </v-col>
     <v-col>
       <v-btn
+        :to="{ name: 'FoodIndex' }"
+        text
+        class="text-capitalize"
+      >
+        foods
+      </v-btn>
+    </v-col>
+    <v-col>
+      <v-btn
         :to="{ name: 'MyPage' }"
         text
         class="text-capitalize"
