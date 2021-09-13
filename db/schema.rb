@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_071457) do
+ActiveRecord::Schema.define(version: 2021_09_11_133643) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -82,6 +82,46 @@ ActiveRecord::Schema.define(version: 2021_09_11_071457) do
     t.index ["name"], name: "index_food_categories_on_name", unique: true
   end
 
+  create_table "foods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "food_category_id"
+    t.string "name", default: "dummy", null: false
+    t.float "reference_amount", default: 1.0, null: false
+    t.text "description"
+    t.integer "priority", default: 0, null: false
+    t.float "calorie", default: 0.0, null: false
+    t.float "protein", default: 0.0, null: false
+    t.float "fat", default: 0.0, null: false
+    t.float "carbohydrate", default: 0.0, null: false
+    t.float "vitamin_a", default: 0.0, null: false
+    t.float "vitamin_d", default: 0.0, null: false
+    t.float "vitamin_e", default: 0.0, null: false
+    t.float "vitamin_k", default: 0.0, null: false
+    t.float "vitamin_b1", default: 0.0, null: false
+    t.float "vitamin_b2", default: 0.0, null: false
+    t.float "niacin", default: 0.0, null: false
+    t.float "vitamin_b6", default: 0.0, null: false
+    t.float "vitamin_b12", default: 0.0, null: false
+    t.float "folate", default: 0.0, null: false
+    t.float "pantothenic_acid", default: 0.0, null: false
+    t.float "biotin", default: 0.0, null: false
+    t.float "vitamin_c", default: 0.0, null: false
+    t.float "potassium", default: 0.0, null: false
+    t.float "calcium", default: 0.0, null: false
+    t.float "magnesium", default: 0.0, null: false
+    t.float "phosphorus", default: 0.0, null: false
+    t.float "iron", default: 0.0, null: false
+    t.float "zinc", default: 0.0, null: false
+    t.float "copper", default: 0.0, null: false
+    t.float "manganese", default: 0.0, null: false
+    t.float "iodine", default: 0.0, null: false
+    t.float "selenium", default: 0.0, null: false
+    t.float "chromium", default: 0.0, null: false
+    t.float "molybdenum", default: 0.0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_category_id"], name: "index_foods_on_food_category_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -103,5 +143,6 @@ ActiveRecord::Schema.define(version: 2021_09_11_071457) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "foods", "food_categories"
   add_foreign_key "users", "dietary_reference_intakes"
 end
