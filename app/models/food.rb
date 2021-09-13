@@ -1,4 +1,59 @@
 class Food < ApplicationRecord
+  # Associations
+  belongs_to :food_category
+
+  # Validations
+  with_options presence: true do
+    validates :name
+
+    with_options numericality: true do
+      validates :priority
+      validates :reference_amount
+      validates :biotin
+      validates :calcium
+      validates :chromium
+      validates :copper
+      validates :folate
+      validates :iodine
+      validates :iron
+      validates :magnesium
+      validates :manganese
+      validates :molybdenum
+      validates :niacin
+      validates :pantothenic_acid
+      validates :phosphorus
+      validates :potassium
+      validates :selenium
+      validates :upper_limit_calcium
+      validates :upper_limit_chromium
+      validates :upper_limit_copper
+      validates :upper_limit_folate
+      validates :upper_limit_iodine
+      validates :upper_limit_iron
+      validates :upper_limit_manganese
+      validates :upper_limit_molybdenum
+      validates :upper_limit_niacin
+      validates :upper_limit_phosphorus
+      validates :upper_limit_selenium
+      validates :upper_limit_vitamin_a
+      validates :upper_limit_vitamin_b6
+      validates :upper_limit_vitamin_d
+      validates :upper_limit_vitamin_e
+      validates :upper_limit_zinc
+      validates :vitamin_a
+      validates :vitamin_b1
+      validates :vitamin_b12
+      validates :vitamin_b2
+      validates :vitamin_b6
+      validates :vitamin_c
+      validates :vitamin_d
+      validates :vitamin_e
+      validates :vitamin_k
+      validates :zinc
+    end
+  end
+
+  validates :description, length: { maximum: 400 }
 end
 
 # == Schema Information

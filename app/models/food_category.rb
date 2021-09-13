@@ -1,4 +1,8 @@
 class FoodCategory < ApplicationRecord
+  # Associations
+  has_many :foods, dependent: :destroy
+
+  # Validations
   validates :name, presence: true, uniqueness: true
 end
 
