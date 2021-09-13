@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :food do
-    
+    sequence(:name, "food_0")
+    association :food_category
   end
 end
 
