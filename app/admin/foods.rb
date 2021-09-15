@@ -1,5 +1,5 @@
 ActiveAdmin.register Food do
-  permit_params :id, :name, :food_category_id, :priority,
+  permit_params :id, :name, :subname, :food_category_id, :priority,
                 :reference_amount, :description,
                 :vitamin_a, :vitamin_d, :vitamin_e, :vitamin_k,
                 :vitamin_b1, :vitamin_b2, :niacin, :vitamin_b6,
@@ -14,6 +14,7 @@ ActiveAdmin.register Food do
     id_column
     column(:food_category_id)
     column(:name)
+    column(:subname)
     column(:priority)
     actions
   end
@@ -29,6 +30,7 @@ ActiveAdmin.register Food do
       row(:id)
       row(:food_category_id)
       row(:name)
+      row(:subname)
       row(:priority)
       row(:reference_amount)
       row(:description)
@@ -66,10 +68,11 @@ ActiveAdmin.register Food do
     f.inputs do
       f.input :food_category_id
       f.input :name
+      f.input :subname
       f.input :priority
       f.input :reference_amount
       f.input :description
     end
     f.actions
-  end  
+  end
 end
