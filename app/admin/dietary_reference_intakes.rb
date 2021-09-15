@@ -21,7 +21,9 @@ ActiveAdmin.register DietaryReferenceIntake do
   end
 
   # 一覧ページのフィルター項目
-  filter :gender, as: :select, collection: DietaryReferenceIntake.genders_i18n.invert.map { |key, value| [key, DietaryReferenceIntake.genders[value]] }
+  filter :gender, as: :select, collection: DietaryReferenceIntake.genders_i18n.invert.map { |key, value|
+                                             [key, DietaryReferenceIntake.genders[value]]
+                                           }
 
   # 詳細ページの表示項目
   show do
