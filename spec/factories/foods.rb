@@ -33,6 +33,7 @@ end
 #  protein          :float(24)        default(0.0), not null
 #  reference_amount :float(24)        default(1.0), not null
 #  selenium         :float(24)        default(0.0), not null
+#  subname          :string(255)
 #  vitamin_a        :float(24)        default(0.0), not null
 #  vitamin_b1       :float(24)        default(0.0), not null
 #  vitamin_b12      :float(24)        default(0.0), not null
