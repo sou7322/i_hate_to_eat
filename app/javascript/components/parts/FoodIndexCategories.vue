@@ -29,7 +29,7 @@ export default {
   methods: {
     setCategories() {
       this.axios
-        .get('/api/v1/food_category')
+        .get('/api/v1/food_categories')
         .then(response => {
           console.log(response.status);
           this.categories = response.data.data;
