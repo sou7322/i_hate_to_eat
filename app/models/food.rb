@@ -24,22 +24,6 @@ class Food < ApplicationRecord
       validates :phosphorus
       validates :potassium
       validates :selenium
-      validates :upper_limit_calcium
-      validates :upper_limit_chromium
-      validates :upper_limit_copper
-      validates :upper_limit_folate
-      validates :upper_limit_iodine
-      validates :upper_limit_iron
-      validates :upper_limit_manganese
-      validates :upper_limit_molybdenum
-      validates :upper_limit_niacin
-      validates :upper_limit_phosphorus
-      validates :upper_limit_selenium
-      validates :upper_limit_vitamin_a
-      validates :upper_limit_vitamin_b6
-      validates :upper_limit_vitamin_d
-      validates :upper_limit_vitamin_e
-      validates :upper_limit_zinc
       validates :vitamin_a
       validates :vitamin_b1
       validates :vitamin_b12
