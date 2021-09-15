@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
       resource :registration, only: %i[create]
-      resources :food_categories, only: %i[index] 
+      resources :food_categories, only: %i[index] do
+        resources :foods, only: %i[index show]
+      end
       resource :authentication, only: %i[create destroy]
       resource :home, only: %i[index]
       resource :bmr, only: %i[show update]
