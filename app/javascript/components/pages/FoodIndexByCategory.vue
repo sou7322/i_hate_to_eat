@@ -1,7 +1,6 @@
 <template>
   <div>
     <food-index-table
-      :headers="headers"
       :foods="foods"
     />
   </div>
@@ -16,27 +15,6 @@ export default {
   },
   data() {
     return {
-      headers: [
-        {
-          text: '食品名',
-          value: 'name',
-          align: 'end',
-          width: '10px'
-        },
-        {
-          text: '',
-          value: 'subname',
-          align: 'start',
-          width: '10px',
-          sortable: false
-        },
-        {
-          text: 'kcal',
-          value: 'calorie',
-          align: 'center',
-          width: '20px'
-        }
-      ],
       foods: []
     };
   },
