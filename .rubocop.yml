@@ -48,6 +48,9 @@ Style/Documentation:
 Style/GuardClause:
   MinBodyLength: 5
 
+Style/SymbolArray:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: false
 
@@ -57,6 +60,7 @@ Style/StringLiteralsInInterpolation:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+  Max: 85
 
 Rails/FilePath:
   Exclude:

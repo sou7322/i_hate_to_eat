@@ -1,7 +1,7 @@
 class DietaryReferenceIntake < ApplicationRecord
   # Associations
   has_many :users, dependent: :nullify
-  
+
   # Enums
   enum gender: { female: 0, male: 10 }
 
