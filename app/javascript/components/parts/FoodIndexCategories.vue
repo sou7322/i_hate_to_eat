@@ -9,6 +9,7 @@
         tile
         height="80"
         width="150"
+        :to="{ name: 'FoodIndexByCategory', params: {id: c.id}}"
       >
         {{ c.attributes.name }}
       </v-btn>
