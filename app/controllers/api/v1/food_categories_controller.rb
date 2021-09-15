@@ -1,7 +1,7 @@
 module Api
   module V1
     class FoodCategoriesController < ApplicationController
-      def show
+      def index
         categories = FoodCategory.all
         json_string = FoodCategorySerializer.new(categories).serialized_json
 

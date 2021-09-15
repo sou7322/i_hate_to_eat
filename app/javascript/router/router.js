@@ -6,6 +6,7 @@ import RegisterPage from '../components/pages/RegisterPage';
 import HomePage from '../components/pages/HomePage';
 import MyPage from '../components/pages/MyPage';
 import FoodIndex from '../components/pages/FoodIndex';
+import FoodIndexByCategory from '../components/pages/FoodIndexByCategory';
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,11 @@ const router = new VueRouter({
       path: '/search',
       component: FoodIndex,
       name: 'FoodIndex'
+    },
+    {
+      path: '/search/:id(\\d+)',
+      component: FoodIndexByCategory,
+      name: 'FoodIndexByCategory'
     },
     {
       path: '/home',
