@@ -7,16 +7,16 @@
       <v-tab-item>
         <v-sheet
           elevation="0"
-          color="blue"
         >
           <template
             v-for="v in vitamins"
           >
-            <my-page-setting-dri-card
+            <nutrient-card
               :key="v.label"
               :label="v.label"
               :amount="v.amount"
               :unit="v.unit"
+              class="left"
             />
           </template>
         </v-sheet>
@@ -29,11 +29,12 @@
           <template
             v-for="m in minerals"
           >
-            <my-page-setting-dri-card
+            <nutrient-card
               :key="m.label"
               :label="m.label"
               :amount="m.amount"
               :unit="m.unit"
+              class="left"
             />
           </template>
         </v-sheet>
@@ -44,11 +45,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import MyPageSettingDriCard from './MyPageSettingDriCard';
+import nutrientCard from './nutrientCard';
 
 export default {
   components: {
-    MyPageSettingDriCard
+    nutrientCard
   },
   computed: {
     ...mapState('referenceIntakes', {
@@ -73,3 +74,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.left {
+  float: left
+}
+</style>
