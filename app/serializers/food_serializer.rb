@@ -1,7 +1,7 @@
 class FoodSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name, :subname, :description, :reference_amount,
-             :protein, :fat, :carbohydrate,
+             :calorie, :protein, :fat, :carbohydrate,
              :biotin, :calcium, :chromium, :copper, :folate, :iodine,
              :iron, :magnesium, :manganese, :molybdenum, :niacin,
              :pantothenic_acid, :phosphorus, :potassium, :selenium,
