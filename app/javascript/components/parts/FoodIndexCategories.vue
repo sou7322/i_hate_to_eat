@@ -42,9 +42,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.left {
-  float: left
-}
-</style>

@@ -9,7 +9,7 @@
     <v-row>
       <flash-message />
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col>
         <v-card
           color="red"
@@ -22,7 +22,7 @@
           </div>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-app-bar>
 </template>
 
