@@ -7,7 +7,7 @@ class Food < ApplicationRecord
   scope :h_prio, -> { where(priority: 15) }
   scope :m_prio, -> { where(priority: 10) }
   scope :r_prio, -> { where(priority: 5) }
-  scope :rm_prio, -> { where(priority: [5, 10])}
+  scope :rm_prio, -> { where(priority: [5, 10]) }
   scope :maindish, -> { where(food_category_id: [10, 11]) }
   scope :staple_food, -> { where(food_category_id: [1, 2, 4]) }
   scope :sidedish, -> { where(food_category_id: 5..9) }
