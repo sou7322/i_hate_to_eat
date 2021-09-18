@@ -1,4 +1,6 @@
 ActiveAdmin.register FoodCategory do
+  actions :all, except: [:destroy]
+
   permit_params :name
 
   # 一覧ページの表示項目

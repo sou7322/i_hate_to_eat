@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  # Association
+  # Associations
   belongs_to :dietary_reference_intake
+  has_many :suggestions, dependent: :destroy
+  has_many :suggested_foods, through: :suggestions, source: :food
 
   # Enums
   enum gender: { female: 0, male: 10 }

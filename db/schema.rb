@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_030038) do
+ActiveRecord::Schema.define(version: 2021_09_16_101150) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -123,6 +123,19 @@ ActiveRecord::Schema.define(version: 2021_09_15_030038) do
     t.index ["food_category_id"], name: "index_foods_on_food_category_id"
   end
 
+  create_table "suggestions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "food_id", null: false
+    t.float "amount", default: 1.0, null: false
+    t.date "target_date", null: false
+    t.datetime "expies_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_suggestions_on_food_id"
+    t.index ["user_id", "food_id", "target_date"], name: "index_suggestions_on_user_id_and_food_id_and_target_date", unique: true
+    t.index ["user_id"], name: "index_suggestions_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -145,5 +158,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_030038) do
   end
 
   add_foreign_key "foods", "food_categories"
+  add_foreign_key "suggestions", "foods"
+  add_foreign_key "suggestions", "users"
   add_foreign_key "users", "dietary_reference_intakes"
 end
