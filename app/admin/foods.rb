@@ -1,4 +1,6 @@
 ActiveAdmin.register Food do
+  actions :all, except: [:destroy]
+
   permit_params :id, :name, :subname, :food_category_id, :priority,
                 :reference_amount, :description,
                 :vitamin_a, :vitamin_d, :vitamin_e, :vitamin_k,
@@ -20,6 +22,7 @@ ActiveAdmin.register Food do
   end
 
   # 一覧ページのフィルター項目
+  filter :id
   filter :name
   filter :food_category_id
   filter :priority
@@ -34,6 +37,10 @@ ActiveAdmin.register Food do
       row(:priority)
       row(:reference_amount)
       row(:description)
+      row(:calorie)
+      row(:protein)
+      row(:fat)
+      row(:carbohydrate)
       row(:calcium)
       row(:magnesium)
       row(:phosphorus)

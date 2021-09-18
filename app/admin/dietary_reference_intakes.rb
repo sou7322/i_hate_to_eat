@@ -1,4 +1,6 @@
 ActiveAdmin.register DietaryReferenceIntake do
+  actions :all, except: [:destroy]
+
   permit_params :gender, :age_top, :age_bottom, :vitamin_a, :upper_limit_vitamin_a,
                 :vitamin_d, :upper_limit_vitamin_d, :vitamin_e, :upper_limit_vitamin_e,
                 :vitamin_k, :vitamin_b1, :vitamin_b2, :niacin, :upper_limit_niacin,
