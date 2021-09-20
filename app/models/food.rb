@@ -21,8 +21,11 @@ class Food < ApplicationRecord
       validates :reference_amount
       validates :biotin
       validates :calcium
+      validates :calorie
+      validates :carbohydrate
       validates :chromium
       validates :copper
+      validates :fat
       validates :folate
       validates :iodine
       validates :iron
@@ -33,6 +36,7 @@ class Food < ApplicationRecord
       validates :pantothenic_acid
       validates :phosphorus
       validates :potassium
+      validates :protein
       validates :selenium
       validates :vitamin_a
       validates :vitamin_b1

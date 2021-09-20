@@ -63,9 +63,9 @@ class User < ApplicationRecord
   end
 
   def set_amount_pfc
-    [calc_amount_protein,
-     calc_amount_fat,
-     calc_amount_carbo]
+    { protein: calc_amount_protein,
+      fat: calc_amount_fat,
+      carbohydrate: calc_amount_carbo }
   end
 
   private
