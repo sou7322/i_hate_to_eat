@@ -65,7 +65,7 @@ export default {
     nutrientCard
   },
   computed: {
-    ...mapState('foodDetail', {
+    ...mapState('foodDetails', {
       info: state => state.basicInfo,
       macro: state => state.macro,
       vitamins: state => state.vitamins,

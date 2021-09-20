@@ -83,7 +83,7 @@ export default {
         .then(res => {
           console.log(res.status);
           this.$store.dispatch(
-            'foodDetail/setAttributes',
+            'foodDetails/setAttributes',
             res.data.data.attributes
           );
         })
