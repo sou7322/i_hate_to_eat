@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         resources :foods, only: %i[index show]
       end
       resource :users_dietary_reference, only: %i[show update]
+      resource :suggestion, only: %i[show]
     end
   end
 end
@@ -31,7 +32,6 @@ end
 #               admin_dietary_reference_intake GET    /admin/dietary_reference_intakes/:id(.:format)                                           admin/dietary_reference_intakes#show
 #                                              PATCH  /admin/dietary_reference_intakes/:id(.:format)                                           admin/dietary_reference_intakes#update
 #                                              PUT    /admin/dietary_reference_intakes/:id(.:format)                                           admin/dietary_reference_intakes#update
-#                                              DELETE /admin/dietary_reference_intakes/:id(.:format)                                           admin/dietary_reference_intakes#destroy
 #           batch_action_admin_food_categories POST   /admin/food_categories/batch_action(.:format)                                            admin/food_categories#batch_action
 #                        admin_food_categories GET    /admin/food_categories(.:format)                                                         admin/food_categories#index
 #                                              POST   /admin/food_categories(.:format)                                                         admin/food_categories#create
@@ -40,7 +40,6 @@ end
 #                          admin_food_category GET    /admin/food_categories/:id(.:format)                                                     admin/food_categories#show
 #                                              PATCH  /admin/food_categories/:id(.:format)                                                     admin/food_categories#update
 #                                              PUT    /admin/food_categories/:id(.:format)                                                     admin/food_categories#update
-#                                              DELETE /admin/food_categories/:id(.:format)                                                     admin/food_categories#destroy
 #                     batch_action_admin_foods POST   /admin/foods/batch_action(.:format)                                                      admin/foods#batch_action
 #                                  admin_foods GET    /admin/foods(.:format)                                                                   admin/foods#index
 #                                              POST   /admin/foods(.:format)                                                                   admin/foods#create
@@ -49,7 +48,6 @@ end
 #                                   admin_food GET    /admin/foods/:id(.:format)                                                               admin/foods#show
 #                                              PATCH  /admin/foods/:id(.:format)                                                               admin/foods#update
 #                                              PUT    /admin/foods/:id(.:format)                                                               admin/foods#update
-#                                              DELETE /admin/foods/:id(.:format)                                                               admin/foods#destroy
 #                     batch_action_admin_users POST   /admin/users/batch_action(.:format)                                                      admin/users#batch_action
 #                                  admin_users GET    /admin/users(.:format)                                                                   admin/users#index
 #                                              POST   /admin/users(.:format)                                                                   admin/users#create
@@ -65,9 +63,6 @@ end
 #                                              DELETE /admin/comments/:id(.:format)                                                            admin/comments#destroy
 #                                         root GET    /                                                                                        top#index
 #                          api_v1_registration POST   /api/v1/registration(.:format)                                                           api/v1/registrations#create {:format=>/json/}
-#                   api_v1_food_category_foods GET    /api/v1/food_categories/:food_category_id/foods(.:format)                                api/v1/foods#index {:format=>/json/}
-#                    api_v1_food_category_food GET    /api/v1/food_categories/:food_category_id/foods/:id(.:format)                            api/v1/foods#show {:format=>/json/}
-#                       api_v1_food_categories GET    /api/v1/food_categories(.:format)                                                        api/v1/food_categories#index {:format=>/json/}
 #                        api_v1_authentication DELETE /api/v1/authentication(.:format)                                                         api/v1/authentications#destroy {:format=>/json/}
 #                                              POST   /api/v1/authentication(.:format)                                                         api/v1/authentications#create {:format=>/json/}
 #                                   api_v1_bmr GET    /api/v1/bmr(.:format)                                                                    api/v1/bmrs#show {:format=>/json/}
@@ -76,9 +71,13 @@ end
 #                                   api_v1_pfc GET    /api/v1/pfc(.:format)                                                                    api/v1/pfcs#show {:format=>/json/}
 #                                              PATCH  /api/v1/pfc(.:format)                                                                    api/v1/pfcs#update {:format=>/json/}
 #                                              PUT    /api/v1/pfc(.:format)                                                                    api/v1/pfcs#update {:format=>/json/}
+#                   api_v1_food_category_foods GET    /api/v1/food_categories/:food_category_id/foods(.:format)                                api/v1/foods#index {:format=>/json/}
+#                    api_v1_food_category_food GET    /api/v1/food_categories/:food_category_id/foods/:id(.:format)                            api/v1/foods#show {:format=>/json/}
+#                       api_v1_food_categories GET    /api/v1/food_categories(.:format)                                                        api/v1/food_categories#index {:format=>/json/}
 #               api_v1_users_dietary_reference GET    /api/v1/users_dietary_reference(.:format)                                                api/v1/users_dietary_references#show {:format=>/json/}
 #                                              PATCH  /api/v1/users_dietary_reference(.:format)                                                api/v1/users_dietary_references#update {:format=>/json/}
 #                                              PUT    /api/v1/users_dietary_reference(.:format)                                                api/v1/users_dietary_references#update {:format=>/json/}
+#                            api_v1_suggestion GET    /api/v1/suggestion(.:format)                                                             api/v1/suggestions#show {:format=>/json/}
 #                rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #                   rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #                rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
