@@ -1,6 +1,6 @@
 module Api
   module V1
-    class SuggestionsController < ApplicationController
+    class SuggestionsController < BaseController
       before_action :set_user
 
       def show
