@@ -68,7 +68,7 @@ export default {
   props: {
     foods: {
       type: Array,
-      default: () => ([])
+      default: () => []
     }
   },
   data() {
