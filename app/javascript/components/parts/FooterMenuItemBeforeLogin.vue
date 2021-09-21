@@ -3,6 +3,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'TopPage' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -12,6 +13,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'RegisterPage' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -24,6 +26,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'FoodIndex' }"
+        color="base"
         text
         class="text-capitalize"
       >

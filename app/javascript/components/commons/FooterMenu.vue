@@ -2,7 +2,7 @@
   <v-app-bar
     app
     bottom
-    color="blue"
+    color="primary"
     fixed
     flat
   >

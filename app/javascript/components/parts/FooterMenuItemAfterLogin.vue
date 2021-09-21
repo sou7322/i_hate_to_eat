@@ -3,6 +3,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'HomePage' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -12,6 +13,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'FoodIndex' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -21,6 +23,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'MealSuggestion' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -30,6 +33,7 @@
     <v-col>
       <v-btn
         :to="{ name: 'MyPage' }"
+        color="base"
         text
         class="text-capitalize"
       >
@@ -38,6 +42,7 @@
     </v-col>
     <v-col>
       <v-btn
+        color="base"
         text
         class="text-capitalize"
         @click="logoutUser"
