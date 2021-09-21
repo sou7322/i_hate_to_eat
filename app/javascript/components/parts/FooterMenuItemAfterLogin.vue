@@ -20,6 +20,15 @@
     </v-col>
     <v-col>
       <v-btn
+        :to="{ name: 'MealSuggestion' }"
+        text
+        class="text-capitalize"
+      >
+        suggestion
+      </v-btn>
+    </v-col>
+    <v-col>
+      <v-btn
         :to="{ name: 'MyPage' }"
         text
         class="text-capitalize"
