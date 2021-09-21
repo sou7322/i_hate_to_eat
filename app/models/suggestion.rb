@@ -7,7 +7,7 @@ class Suggestion < ApplicationRecord
   with_options presence: true do
     validates :amount
     validates :target_date
-    validates :expies_at
+    validates :expires_at
   end
 
   validates :user_id, uniqueness: { scope: [:food_id, :target_date] }
@@ -19,7 +19,7 @@ end
 #
 #  id          :bigint           not null, primary key
 #  amount      :float(24)        default(1.0), not null
-#  expies_at   :datetime         not null
+#  expires_at  :datetime         not null
 #  target_date :date             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
