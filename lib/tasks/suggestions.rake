@@ -1,6 +1,11 @@
 namespace :suggestions do
   desc "期限切れのsuggestionを削除"
   task destroy_expied_suggestions: :environment do
+    Suggestion.transaction do
+      Suggestion.where("expires_at < ?", Time.zone.today).find_each do |s|
+        s.destroy!
+      end
+    end
   end
 
   desc "ユーザーごとに当日の食事内容を新規作成"
