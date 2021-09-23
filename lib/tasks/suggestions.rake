@@ -2,9 +2,7 @@ namespace :suggestions do
   desc "期限切れのsuggestionを削除"
   task destroy_expied_suggestions: :environment do
     Suggestion.transaction do
-      Suggestion.where("expires_at < ?", Time.zone.today).find_each do |s|
-        s.destroy!
-      end
+      Suggestion.where("expires_at < ?", Time.zone.today).find_each(&:destroy!)
     end
   end
 
@@ -14,9 +12,9 @@ namespace :suggestions do
 
     # 食品の配列から合計カロリーを算出
     def sum_calories(foods)
-      foods.inject(0) { |sum, food|
+      foods.inject(0) do |sum, food|
         sum + food.calorie * food.reference_amount
-      }
+      end
     end
 
     User.find_each do |user|
