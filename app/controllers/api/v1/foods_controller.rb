@@ -1,6 +1,6 @@
 module Api
   module V1
-    class FoodsController < ApplicationController
+    class FoodsController < BaseController
       def index
         foods = Food.where(food_category_id: params[:food_category_id])
         render json: foods

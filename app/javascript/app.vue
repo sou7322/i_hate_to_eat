@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app class="back">
     <common-header />
-    <v-main>
+    <v-main class="back">
       <v-container>
         <router-view />
       </v-container>
@@ -21,3 +21,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.back {
+  background-color: rgba(225, 226, 225, 1);
+}
+</style>

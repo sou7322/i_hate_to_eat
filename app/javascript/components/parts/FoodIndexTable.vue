@@ -68,7 +68,7 @@ export default {
   props: {
     foods: {
       type: Array,
-      default: () => ([])
+      default: () => []
     }
   },
   data() {
@@ -83,7 +83,7 @@ export default {
         .then(res => {
           console.log(res.status);
           this.$store.dispatch(
-            'foodDetail/setAttributes',
+            'foodDetails/setAttributes',
             res.data.data.attributes
           );
         })

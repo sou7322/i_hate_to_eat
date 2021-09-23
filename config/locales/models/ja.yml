@@ -5,6 +5,7 @@ ja:
       dietary_reference_intake: "食事摂取基準"
       food_category: "食品カテゴリー"
       food: "食品"
+      suggestion: "食事提案"
     attributes:
       user:
         name: "ユーザーネーム"
@@ -106,6 +107,12 @@ ja:
         zinc: "亜鉛"
         created_at: "登録日時"
         updated_at: "更新日時"
+      suggestion:
+        user_id: "ユーザーID"
+        food_id: "食品ID"
+        amount: "量"
+        target_date: "対象日"
+        expires_at: "有効期限"
   enums:
     user:
       role:

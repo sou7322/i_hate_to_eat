@@ -7,6 +7,7 @@ import HomePage from '../components/pages/HomePage';
 import MyPage from '../components/pages/MyPage';
 import FoodIndex from '../components/pages/FoodIndex';
 import FoodIndexByCategory from '../components/pages/FoodIndexByCategory';
+import MealSuggestion from '../components/pages/MealSuggestion';
 
 Vue.use(VueRouter);
 
@@ -42,6 +43,11 @@ const router = new VueRouter({
       path: '/mypage',
       component: MyPage,
       name: 'MyPage'
+    },
+    {
+      path: '/suggestion',
+      component: MealSuggestion,
+      name: 'MealSuggestion'
     }
   ]
 });

@@ -7,7 +7,8 @@ import authUser from './modules/authUser';
 import bmrParams from './modules/bmrParams';
 import pfcBalance from './modules/pfcBalance';
 import referenceIntakes from './modules/referenceIntakes';
-import foodDetail from './modules/foodDetail';
+import foodDetails from './modules/foodDetails';
+import nutrientsAchievement from './modules/nutrientsAchievement';
 
 Vue.use(Vuex);
 
@@ -18,7 +19,8 @@ const store = new Vuex.Store({
     bmrParams,
     pfcBalance,
     referenceIntakes,
-    foodDetail
+    foodDetails,
+    nutrientsAchievement
   },
 
   plugins: [createPersistedState({

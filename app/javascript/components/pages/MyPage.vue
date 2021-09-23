@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import MyPageSettings from '../parts/MyPageSettings.vue';
+import MyPageSettings from '../parts/MyPageSettings';
 
 export default {
   components: {
@@ -35,3 +35,4 @@ export default {
   }
 };
 </script>
+

@@ -10,7 +10,7 @@ end
 #
 #  id          :bigint           not null, primary key
 #  amount      :float(24)        default(1.0), not null
-#  expies_at   :datetime         not null
+#  expires_at  :datetime         not null
 #  target_date :date             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

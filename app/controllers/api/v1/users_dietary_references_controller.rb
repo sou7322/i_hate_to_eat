@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersDietaryReferencesController < ApplicationController
+    class UsersDietaryReferencesController < BaseController
       include Api::DietaryReferenceIntakesHandler
       before_action :set_user
 

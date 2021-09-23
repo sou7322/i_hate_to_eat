@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_16_101150) do
+ActiveRecord::Schema.define(version: 2021_09_21_104523) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "namespace"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2021_09_16_101150) do
     t.bigint "food_id", null: false
     t.float "amount", default: 1.0, null: false
     t.date "target_date", null: false
-    t.datetime "expies_at", null: false
+    t.datetime "expires_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["food_id"], name: "index_suggestions_on_food_id"
