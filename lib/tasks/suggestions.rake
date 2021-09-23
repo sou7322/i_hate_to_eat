@@ -5,53 +5,51 @@ namespace :suggestions do
 
   desc "ユーザーごとに当日の食事内容を新規作成"
   task create_suggestion: :environment do
-    require "benchmark"
+    rand = Rails.env.production? ? "RANDOM()" : "RAND()"
 
-    puts Benchmark.measure {
-      rand = Rails.env.production? ? "RANDOM()" : "RAND()"
+    # 食品の配列から合計カロリーを算出
+    def sum_calories(foods)
+      foods.inject(0) { |sum, food|
+        sum + food.calorie * food.reference_amount
+      }
+    end
 
-      def sum_calories(foods)
-        @total_cal = 0
-        foods.each do |f|
-          cal = f.calorie * f.reference_amount
-          @total_cal += cal
-        end
+    User.find_each do |user|
+      meal_menus = []
+
+      # ・主菜・主食をそれぞれ1つずつ追加
+      regular = Food.h_prio
+      main = Food.m_prio.maindish.order(rand).limit(1)
+      staple = Food.m_prio.staple_food.order(rand).limit(1)
+
+      meal_menus.concat(regular, main, staple)
+
+      # 合計カロリーがBMRに達するまで副菜を追加
+      # TODO: 無理矢理な計数ループ、要リファクタリング
+      bmr = user.bmr
+      loop = 0
+      while !@over_bmr && loop <= 50
+        # 重複を避けてサイドメニューを1つずつ取得
+        side = Food.where.not(id: meal_menus.map(&:id)).rm_prio.sidedish.order(rand).limit(1)
+        meal_menus.concat(side)
+
+        @over_bmr = sum_calories(meal_menus) > bmr
+        loop += 1
       end
 
-      User.find_each do |user|
-        meal_menus = []
-
-        reg = Food.h_prio
-        main = Food.m_prio.maindish.order(rand).limit(1)
-        staple = Food.m_prio.staple_food.order(rand).limit(1)
-
-        meal_menus.concat(reg, main, staple)
-        sum_calories(meal_menus)
-
-        bmr = user.bmr
-        while @total_cal <= bmr + 50
-          side = Food.rm_prio.sidedish.order(rand).limit(1)
-
-          # nextはrakeタスク内ではタスク自体の中断コマンド
-          # ループのスキップとしては使えない？
-          # とりあえずunless使用しておく
-          unless meal_menus.include?(*side)
-            meal_menus.concat(side)
-            sum_calories(meal_menus)
-          end
-        end
-
+      # 確定したメニューの内容をSuggestionのインスタンスとして保存
+      Suggestion.transaction do
         meal_menus.each do |m|
           item = user.suggestions.new(
             food_id: m.id,
             amount: m.reference_amount,
             target_date: Time.zone.today,
-            expies_at: Time.current.end_of_day
+            expires_at: Time.current.end_of_day
           )
 
           item.save!
         end
       end
-    }
+    end
   end
 end
