@@ -22,7 +22,7 @@ ActiveAdmin.register Suggestion do
       row(:id)
       row(:user_id)
       row(:food_id)
-      row(:amuount)
+      row(:amount)
       row(:target_date)
       row(:expires_at)
     end
