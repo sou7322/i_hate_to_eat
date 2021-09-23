@@ -31,9 +31,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Authentication
 gem 'sorcery'
 
-# Configuration
-gem 'dotenv-rails'
-
 # Serializer
 gem 'fast_jsonapi'
 
