@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       resource :suggestion, only: %i[show]
     end
   end
+
+  # ルーティングエラーを拾う
+  get '*path', to: 'top#index'
 end
 
 # == Route Map

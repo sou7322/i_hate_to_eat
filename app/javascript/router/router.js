@@ -8,6 +8,7 @@ import MyPage from '../components/pages/MyPage';
 import FoodIndex from '../components/pages/FoodIndex';
 import FoodIndexByCategory from '../components/pages/FoodIndexByCategory';
 import MealSuggestion from '../components/pages/MealSuggestion';
+import NotFound from '../components/pages/NotFound';
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ const router = new VueRouter({
       path: '/suggestion',
       component: MealSuggestion,
       name: 'MealSuggestion'
+    },
+    {
+      // ルーティングエラーを拾う
+      path: '*',
+      component: NotFound
     }
   ]
 });
