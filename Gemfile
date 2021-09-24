@@ -5,9 +5,6 @@ ruby '2.7.4'
 
 gem 'rails', '~> 6.0.3', '>= 6.0.3.7'
 
-# Database
-gem 'mysql2', '>= 0.4.4'
-
 # App server
 gem 'puma', '~> 4.1'
 
@@ -42,6 +39,9 @@ gem 'enum_help'
 gem 'activeadmin'
 
 group :development, :test do
+  # Database
+  gem 'mysql2', '>= 0.4.4'
+
   # Debugger
   gem 'byebug'
   gem 'pry'
@@ -79,6 +79,10 @@ end
 group :test do
   gem 'capybara'
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'pg', '~> 1.2', '>= 1.2.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
