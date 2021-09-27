@@ -1,7 +1,12 @@
 {
   "name": "i_hate_to_eat",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
     "lint": "yarn run eslint --ext .vue --ext .js app/javascript",
     "lint-fix": "yarn run eslint --fix --ext .vue --ext .js app/javascript"
   },
