@@ -1,6 +1,9 @@
 {
   "name": "i_hate_to_eat",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
